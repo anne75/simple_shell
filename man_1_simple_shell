@@ -1,0 +1,149 @@
+.\" zless /usr/share/man/man1/dash.1.gz
+.\"
+.TH SHELL  "1.0" "December, 10, 2016" "holberton man page"
+.SH NAME
+.B shell
+- command interpreter (shell)
+.SH SYNOPSIS
+.B shell
+.B "["aCefnuvxIimqVEb"]" "["+aCefnuvxIimqVEb"]" "["-o option_name"]"
+
+.ad
+.SH DESCRIPTION
+.B shell
+is the standard command interpreter for the system.
+The current version of
+.B shell
+is a simple shell.
+.SS Overview
+The shell is a command that reads lines from either a file or the
+terminal, interprets them, and generally executes other commands.
+It is the program that is running when a user logs into the system.
+The shell implements a language that has flow control
+constructs, a macro facility that provides a variety of features in
+addition to data storage, along with built in history and line editing
+capabilities.
+It incorporates many features to aid interactive use and
+has the advantage that the interpretative language is common to both
+interactive and non-interactive use (shell scripts).
+That is, commands
+can be typed directly to the running shell or can be put into a file and
+the file can be executed directly by the shell.
+.SS Invocation
+If no args are present and if the standard input of the shell
+is connected to a terminal (or if the
+.FL i
+flag is set),
+and the
+.FL c
+option is not present, the shell is considered an interactive shell.
+An interactive shell generally prompts before each command and handles
+programming and command errors differently (as described below).
+When first starting,
+the shell inspects argument 0, and if it begins with a dash
+.SQ - ,
+the shell is also considered
+a login shell.
+This is normally done automatically by the system
+when the user first logs in.
+A login shell first reads commands
+from the files
+.PA /etc/profile
+and
+.PA .profile
+if they exist.
+If the environment variable
+.EV ENV
+is set on entry to an interactive shell, or is set in the
+.PA .profile
+of a login shell, the shell next reads
+commands from the file named in
+.EV ENV .
+Therefore, a user should place commands that are to be executed only at
+login time in the
+.PA .profile
+file, and commands that are executed for every interactive shell inside the
+.EV ENV
+file.
+To set the
+.EV ENV
+variable to some file, place the following line in your
+.PA .profile
+of your home directory
+.PP
+.Dl ENV=$HOME/.shinit; export ENV
+.PP
+substituting for
+.DQ .shinit
+any filename you wish.
+.PP
+If command line arguments besides the options have been specified, then
+the shell treats the first argument as the name of a file from which to
+read commands (a shell script), and the remaining arguments are set as the
+positional parameters of the shell ($1, $2, etc).
+Otherwise, the shell
+reads commands from its standard input.
+.SS Argument List Processing
+All of the single letter options that have a corresponding name can be
+used as an argument to the
+.FL o
+option.
+The set
+.FL o
+name is provided next to the single letter option in
+the description below.
+Specifying a dash
+.Dq -
+turns the option on, while using a plus
+.DQ +
+disables the option.
+The following options can be set from the command line or
+with the
+.IC set
+builtin (described later).
+.BL -tag -width aaaallexportfoo -offset indent
+.IT Fl a Em allexport
+Export all variables assigned to.
+.IT Fl c
+Read commands from the
+.AR command_string
+operand instead of from the standard input.
+Special parameter 0 will be set from the
+.AR command_name
+operand and the positional parameters ($1, $2, etc.)
+set from the remaining argument operands.
+.IT Fl C Em noclobber
+Don't overwrite existing files with
+.DQ \*[Gt] .
+.IT Fl e Em errexit
+.\"cut here
+.IT Ev PPID
+The process ID of the parent process of the shell.
+.El
+.SH FILES
+.Bl -item -width HOMEprofilexxxx
+.It
+.Pa $HOME/.profile
+.It
+.Pa /etc/profile
+.El
+.SH SEE ALSO
+.Xr csh 1 ,
+.Xr echo 1 ,
+.Xr getopt 1 ,
+.Xr ksh 1 ,
+.Xr login 1 ,
+.Xr printf 1 ,
+.Xr test 1 ,
+.Xr getopt 3 ,
+.Xr passwd 5 ,
+.\" .Xr profile 4 ,
+.Xr environ 7 ,
+.Xr sysctl 8
+.SH BUGS
+some...
+.SH AUTHORS
+Jay Wang - Anne Cognet
+.SH HISTORY
+Project done in 2 weeks in december 2016 while students at Holberton School
+
