@@ -1,18 +1,4 @@
-#include "shell2.h"
-
-/**
- * _strlen - find the length of a string
- * @str: string to find length of
- * Return: i, length
- */
-int _strlen(char *str)
-{
-	int i;
-
-	for (i = 0; str[i] != '\0'; i++)
-		;
-	return (i);
-}
+#include "shell.h"
 
 /**
  * _getenv - get environmental variable
@@ -20,31 +6,23 @@ int _strlen(char *str)
  * @head: beginning of env var linked list
  * Return: string starting with '='
  */
-char *_getenv(const char *name, list_t **head)
+char *_getenv(const char *name, node_t *head)
 {
-	char *string;
-	list_t *temp, *hold;
+	if (!name)
+		return (NULL);
+/*I do not check if name contains an = sign*/
 
-	temp = *head;
-	while (temp != NULL)
+	while (head != NULL)
 	{
-		if (*name == *temp->s)
+		if (check_first(head->name, name))
 		{
-			hold = temp;
-			while (*name != '\0' && *temp->s != '=' && *name == *temp->s)
-			{
-				name++;
-				temp->s++;
-			}
-			if (*name == '\0')
-			{
-				string = _strdup(hold->s);
-			}
+			return (head->name + _strlen(name) + 1);
 		}
-		temp = temp->next;
+		head = head->next;
 	}
-	return (string);
+	return (NULL);
 }
+
 
 /*
 int main(void)

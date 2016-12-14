@@ -1,20 +1,28 @@
-#include "shell2.h"
+#include "shell.h"
 
 /**
  * env_link - create a linked list of environmental variables
  * @head: beginning of linked list
+ * the helper function copies the string
  * Return: beginning of linked list
  */
-list_t *env_link(list_t **head)
+node_t *env_link(node_t **head)
 {
 	extern char **environ;
 	int i;
-	char *var_str;
+	char *check;
+
+	if (!head)
+		return (NULL);
 
 	for (i = 0; environ[i] != NULL; i++)
 	{
-		var_str = _strdup(environ[i]);
-		add_node_end(head, var_str);
+		check = add_node_end(head, environ[i], NULL);
+		if (check == NULL)
+		{
+			free_list(*head);
+			return (NULL);
+		}
 	}
 	return (*head);
 }

@@ -42,6 +42,7 @@ char *_strchr(char *s, char c);
 /*in helper_list*/
 node_t *add_node_end(node_t **head, const char *, const char *);
 void free_list(node_t *head);
+int delete_node(node_t **head, char*name);
 
 /*in environment*/
 char *_getenv(const char *name);
