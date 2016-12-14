@@ -89,7 +89,7 @@ int delete_node(node_t **head, char *name)
 
 	tmp = *head;
 	prev = NULL;
-	while (tmp != NULL && !check_first(temp->name, name))
+	while (tmp != NULL && !check_first(tmp->name, name))
 	{
 		prev = tmp;
 		tmp = tmp->next;
