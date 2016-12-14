@@ -9,7 +9,7 @@
  */
 void free_list(node_t *head)
 {
-	path_t *tmp;
+	node_t *tmp;
 
 	if (head == NULL)
 		return;
@@ -33,12 +33,12 @@ void free_list(node_t *head)
  * @value: second value to insert, or NULL
  * Return: address of new element or NULL if failed
  */
-path_t *add_node_end(node_t **head, const char *name, const char *value)
+node_t *add_node_end(node_t **head, const char *name, const char *value)
 {
 	node_t *new;
 	node_t **tmp;
 
-	if(!head || !str)
+	if(!head || !name)
 		return (NULL);
 
 	new = malloc(sizeof(node_t));
@@ -83,7 +83,7 @@ path_t *add_node_end(node_t **head, const char *name, const char *value)
 int delete_node(node_t **head, char *name)
 {
 	node_t **tmp;
-	char *tmpnode;
+	node_t *tmpnode;
 
 	if (!head || !name)
 		return (-1);
@@ -120,10 +120,10 @@ int change_node_value(node_t *head, char *name, char *value)
 		if (head->name == name)
 		{
 			if (head->value != NULL)
-				free(head->value)
-			head->value = _strdup(value)
-				if (head->value == NULL)
-					return (-1);
+				free(head->value);
+			head->value = _strdup(value);
+			if (head->value == NULL)
+				return (-1);
 			return (1);
 		}
 		head = head->next;
