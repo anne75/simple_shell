@@ -82,23 +82,28 @@ node_t *add_node_end(node_t **head, const char *name, const char *value)
  */
 int delete_node(node_t **head, char *name)
 {
-	node_t **tmp;
-	node_t *tmpnode;
+	node_t *tmp, *prev;
 
 	if (!head || !name)
 		return (-1);
 
-	tmp = head;
-	while (*tmp != NULL && (*tmp)->name != name)
-		tmp = &((*tmp)->next);
-	if (*tmp)
+	tmp = *head;
+	prev = NULL;
+	while (tmp != NULL && !check_first(temp->name, name))
 	{
-		tmpnode = *tmp;
-		free(tmpnode->name);
-		if (tmpnode->value != NULL)
-			free(tmpnode->value);
-		*tmp = tmpnode->next;
-		free(tmpnode);
+		prev = tmp;
+		tmp = tmp->next;
+	}
+	if (tmp != NULL)
+	{
+		free(tmp->name);
+		if (tmp->value != NULL)
+			free(tmp->value);
+		if (prev != NULL)
+			prev->next = tmp->next;
+		else
+			*head = tmp->next;
+		free(tmp);
 		return (1);
 	}
 	return (-1);

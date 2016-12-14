@@ -1,25 +1,30 @@
-#include "shell2.h"
+#include "shell.h"
 
 /**
  * _setenv - add or change an environmental variable
  * @name: name of the new or exisiting environ var
  * @value: value of the environ var
  * @overwrite: 0 for not overwrite, anything else for overwrite
- * @head: beginning of linked list
+ * @head: beginning of environment linked list
  * Return: 1 for success, -1 for fail
  */
-int _setenv(const char *name, const char *value, int overwrite, list_t **head)
+int _setenv(const char *name, const char *value, int overwrite, node_t **head)
 {
 	char *val;
 	int i, j, k, l;
 
+	if (!name || !value || !head)
+		return (-1);
+	if (_strchr(name, '=') != NULL)
+		return (-1);
+/*does not check for = in strings*/
 	val = _getenv(name, head);
+	if (val != NULL && overwrite)
+		delete_node(head, name);
 	if (val == NULL || overwrite != 0)
 	{
-		for (i = 0; name[i] != '\0'; i++)
-			;
-		for (j = 0; value[j] != '\0'; j++)
-			;
+		i = _strlen(name);
+		j = _strlen(value);
 		val = malloc(sizeof(char) * (i + j + 2));
 		if (val == NULL)
 			return (-1);
@@ -29,9 +34,7 @@ int _setenv(const char *name, const char *value, int overwrite, list_t **head)
 		for (k = 0; value[k] != '\0'; k++, l++)
 			val[l] = value[k];
 		val[l] = '\0';
-		add_node_end(head, val);
+		add_node_end(head, val, NULL);
 	}
-	if (val != NULL && overwrite == 1)
-		return (-1);
-	return (1);
+	return (0);
 }
