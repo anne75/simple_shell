@@ -14,7 +14,7 @@ char *_which(char *name)
 {
 	int length_path, length_name;
 	char *fullname;
-	path_t *head;
+	node_t *head;
 	struct stat st;
 
 	if (_strchr(name, '/') != NULL)
@@ -25,11 +25,11 @@ char *_which(char *name)
 /*	printf("_which %i\n", __LINE__);*/
 	while (head != NULL)
 	{
-		length_path = _strlen(head->path);
+		length_path = _strlen(head->name);
 		fullname = malloc(sizeof(char) * (length_path + length_name + 2));
 		if (fullname == NULL)
 			return (NULL);
-		_memcpy(fullname, head->path, length_path);
+		_memcpy(fullname, head->name, length_path);
 		fullname[length_path] = '/';
 		_memcpy(fullname + length_path + 1, name, length_name);
 		fullname[length_name + length_path + 1] = '\0';
