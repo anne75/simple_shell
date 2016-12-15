@@ -10,7 +10,8 @@ char *_getenv(const char *name, node_t *head)
 {
 	if (!name)
 		return (NULL);
-/*I do not check if name contains an = sign*/
+	if (_strchr(name, '=')!= NULL)
+		return (NULL);
 
 	while (head != NULL)
 	{

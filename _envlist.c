@@ -8,16 +8,16 @@
  */
 node_t *env_link(node_t **head)
 {
-	extern char **environ;
 	int i;
-	char *check;
+	node_t *check;
 
 	if (!head)
 		return (NULL);
-
+	printf("%s %i\n", __FILE__, __LINE__);
 	for (i = 0; environ[i] != NULL; i++)
 	{
 		check = add_node_end(head, environ[i], NULL);
+		printf("%s %i\n", __FILE__, __LINE__);
 		if (check == NULL)
 		{
 			free_list(*head);
