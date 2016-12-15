@@ -106,7 +106,7 @@ char *_memcpy(char *dest, const char *src, unsigned int n)
  *
  * Return: pointer to first occurence of c or NULL otherwise
  */
-char *_strchr(char *s, char c)
+const char *_strchr(const char *s, char c)
 {
 	int i;
 

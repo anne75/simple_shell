@@ -40,7 +40,7 @@ node_t *add_node_end(node_t **head, const char *name, const char *value)
 
 	if(!head || !name)
 		return (NULL);
-
+	printf("%s %i\n", __FILE__, __LINE__);
 	new = malloc(sizeof(node_t));
 	if (new == NULL)
 		return (NULL);
@@ -67,6 +67,7 @@ node_t *add_node_end(node_t **head, const char *name, const char *value)
 	}
 	new->next = NULL;
 /*try to apply Linus Torvald's good taste, no if*/
+	printf("%s %i\n", __FILE__, __LINE__);
 	tmp = head;
 	while (*tmp != NULL)
 		tmp = &((*tmp)->next);
@@ -80,7 +81,7 @@ node_t *add_node_end(node_t **head, const char *name, const char *value)
  * @name: name in the node
  * Return: 1 on success, -1 on failure
  */
-int delete_node(node_t **head, char *name)
+int delete_node(node_t **head, const char *name)
 {
 	node_t *tmp, *prev;
 
