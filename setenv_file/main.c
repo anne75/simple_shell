@@ -28,5 +28,6 @@ int main(int argc, char **argv)
 		return (-1);
 	env_link(&env_start);
 	_setenv(argv[1], argv[2], 1, &env_start);
+	print_list_t(env_start);
 	return (0);
 }

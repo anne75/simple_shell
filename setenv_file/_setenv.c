@@ -18,7 +18,7 @@ int _setenv(char *name, char *value, int overwrite, node_t **head)
 	if (_strchr(name, '=') != NULL)
 		return (-1);
 /*does not check for = in strings*/
-	val = _getenv(name);
+	val = _getenv(name, *head);
 	if (val != NULL && overwrite)
 		delete_node(head, name);
 	if (val == NULL || overwrite != 0)

@@ -44,12 +44,6 @@ node_t *add_node_end(node_t **head, const char *, const char *);
 void free_list(node_t *head);
 int delete_node(node_t **head, char*name);
 
-/*in environment*/
-char *_getenv(const char *name);
-void print_path(void);
-node_t *link_path(node_t **head);
-/*int _setenv(const char *name, const char *value, int overwrite);*/
-
 /*in strtow*/
 char **strtow(char *str, char delimeter);
 void free_strtow(char **s);
@@ -65,4 +59,7 @@ node_t *env_link(node_t **head);
 
 /*in _setenv*/
 int _setenv(char *name, char *value, int overwrite, node_t **head);
+
+/*in _getenv*/
+char *_getenv(const char *name, node_t *head);
 #endif
