@@ -28,6 +28,8 @@ int main(void)
 /*should get basename*/
 		printf("simple shell: The line is %s\n", line);
 		args = strtow(line, ' ');
+		printf("%s %i free\n", __FILE__, __LINE__);
+		free(line);
 		if (args == NULL)
 		{
 			printf("simple shell: strtow ran into error\n");
@@ -52,6 +54,8 @@ int main(void)
 		else
 		{
 			waitpid(childpid, &status, 0);
+			free_strtow(args);
+			printf("%s %i free\n", __FILE__, __LINE__);
 			printf("in parent: child process is %u status is %i current pid is %u\n", childpid, status, getpid());
 		}
 	}
