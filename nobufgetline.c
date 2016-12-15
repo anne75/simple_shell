@@ -42,7 +42,7 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 	}
 	if (new_size == old_size)
 		return (ptr);
-
+	printf("%s %i malloc\n", __FILE__, __LINE__);
 	new = malloc(new_size);
 	if (new == NULL)
 		return (NULL);
@@ -60,6 +60,7 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 		*(help2 + i) = *(help1 + i);
 		++i;
 	}
+	printf("%s %i free\n", __FILE__, __LINE__);
 	free(ptr);
 	return (new);
 }
@@ -84,12 +85,13 @@ void fill_buffer(char **buf, size_t *size, char c, size_t index)
 	{
 		printf("realloc buffer\n");
 		*buf = _realloc(*buf, *size, *size * 2);
-		if (buf == NULL)
+		if (*buf == NULL)
 			return;
 		*size = *size * 2;
+		printf("after realloc %lu, \n", *size);
 	}
 	p = *buf;
-	printf("fill_buffer, char is %d index is %lu\n", c, index);
+/*	printf("fill_buffer, char is %d index is %lu\n", c, index);*/
 	*(p + index) = c;
 /*	printf("fill_buffer, assigned %c", *((*buf) + index));*/
 }
@@ -105,7 +107,6 @@ ssize_t _getline(char **buf, size_t *size)
 	size_t index;
 	char c;
 	int check_r;
-	char *position;
 
 	if (!buf || !size)
 		return (-1);
@@ -113,40 +114,40 @@ ssize_t _getline(char **buf, size_t *size)
 	if (!*buf)
 	{
 		*size = BUF_LENGTH;
+		printf("%s %i malloc\n", __FILE__, __LINE__);
 		*buf = malloc(*size * sizeof(char));
 		if (*buf == NULL)
 			return (-1);
 	}
 
 	index = 0;
-	position = *buf;
 	flush_buffer(*buf, *size);
 	while (1)
 	{
 		check_r = read( STDIN_FILENO, &c, 1);
-		printf("enter while loop %s %i %i %d\n", __FILE__, __LINE__, check_r, c);
+/*		printf("enter while loop %s %i %i %d\n", __FILE__, __LINE__, check_r, c);*/
 		if(check_r == -1)
 			return (-1); /*buffer freed elsewhere*/
-		if (check_r == 0) /*it might be EOF*/
+		if (check_r == 0) /*EOF or C^C*/
 			return (-1) ;
 		if(c == EOF)
 		{
 			printf("getline EOF index %lu\n", index);
 			if (index == 0)
-				return (-1);;
+				return (-1);
 			break;
 		}
-/*do not get the new line*/
+
 /*		printf("getline %i buffer %s\n", __LINE__, *buf);*/
 		fill_buffer(buf, size, c, index);
 		if (*buf == NULL)
 			return (-1);
-		printf("%s %i %lu newly inserted %c\n", __FILE__, __LINE__, index, *(position + index));
+/*		printf("%s %i %lu newly inserted %c \n", __FILE__, __LINE__, index, *(position + index));*/
 		++index;
 		if (c == '\n')
 			break;
 	}
-	*(position + index) = '\0'; /*room because check*/
-/*	printf("%s %i %s %lu\n", __FILE__, __LINE__, position, index);*/
+	*((*buf) + index) = '\0'; /*room because check*/
+	printf("_getline RETURN %s %i %s %lu\n", __FILE__, __LINE__, *buf, index);
 	return (index);
 }
