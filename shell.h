@@ -7,7 +7,7 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <sys/stat.h>
-
+#include <signal.h>
 
 #define BUF_LENGTH 64
 #define LINE_LENGTH 20
@@ -27,7 +27,6 @@ typedef struct node_s
 	char *value;
 	struct node_s *next;
 } node_t;
-
 
 /*extern variable*/
 extern char **environ;
@@ -93,5 +92,10 @@ int _unsetenv(const char *name, node_t **head);
 /*in prompt*/
 char *prompt(void);
 
+/*in _ctrl_c*/
+void sig_kill(int sig);
+void set_to_kill(void);
+void sig_catch(int sig);
+void set_to_catch(void);
 
 #endif

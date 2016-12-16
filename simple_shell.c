@@ -30,6 +30,7 @@ int main(void)
 	link_path(&pathl, envl);
 	while (1)
 	{
+		set_to_catch();
 		printf("%s %i\n", __FILE__, __LINE__);
 		line = prompt();
 		if (line == NULL)
@@ -39,25 +40,30 @@ int main(void)
 		}
 		printf("simple shell: The line is %s\n", line);
 		if (_strlen(line) == 0)
-			fork_flag = 0;
-		args = strtow(line, ' ');
-		printf("%s %i free\n", __FILE__, __LINE__);
-		free(line);
-		if (args == NULL)
-		{
-			printf("simple shell: strtow ran into error\n");
-			exit(98);
-		}
-		return_value = bi_function(args, &envl);
-		if (return_value !=101)
 		{
 			fork_flag = 0;
 		}
 		else
 		{
-			function = what_path(args[0], pathl);
-			if (function == NULL)
+			args = strtow(line, ' ');
+			printf("%s %i free\n", __FILE__, __LINE__);
+			free(line);
+			if (args == NULL)
+			{
+				printf("simple shell: strtow ran into error\n");
+				exit(98);
+			}
+			return_value = bi_function(args, &envl);
+			if (return_value !=101)
+			{
 				fork_flag = 0;
+			}
+			else
+			{
+				function = what_path(args[0], pathl);
+				if (function == NULL)
+					fork_flag = 0;
+			}
 		}
 /*		for(i = 0; args[i] != NULL; ++i)
 		printf("-%s-",args[i]);*/
@@ -70,6 +76,7 @@ int main(void)
 /*		puts("WORLD");*/
 			if (childpid == 0)
 			{
+				set_to_kill();
 				printf("simple shell: in child process\n");
 				if (execve(function, (char *const *) args, environ) == -1)
 				{
@@ -86,6 +93,7 @@ int main(void)
 				printf("in parent: child process is %u status is %i current pid is %u\n", childpid, status, getpid());
 			}
 		}
+		fork_flag = 1;
 	}
 	free_list(envl);
 	free_list(pathl);
