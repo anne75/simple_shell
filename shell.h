@@ -9,6 +9,7 @@
 #include <sys/wait.h>
 #include <sys/stat.h>
 #include <limits.h>
+#include <signal.h>
 
 #define BUF_LENGTH 64
 #define LINE_LENGTH 20
@@ -28,7 +29,6 @@ typedef struct node_s
 	char *value;
 	struct node_s *next;
 } node_t;
-
 
 /*extern variable*/
 extern char **environ;
@@ -96,4 +96,11 @@ char *prompt(void);
 /*in nobufgetline*/
 void flush_buffer(char *buffer, size_t size);
 void fill_buffer(char **buf, size_t *size, char c, size_t index);
+
+/*in _ctrl_c*/
+void sig_kill(int sig);
+void set_to_kill(void);
+void sig_catch(int sig);
+void set_to_catch(void);
+
 #endif
