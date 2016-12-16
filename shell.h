@@ -4,9 +4,11 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <fcntl.h>
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <sys/stat.h>
+#include <limits.h>
 #include <signal.h>
 
 #define BUF_LENGTH 64
@@ -31,14 +33,13 @@ typedef struct node_s
 /*extern variable*/
 extern char **environ;
 
-
 /*in bi_function*/
 int bi_function(char **args, node_t **envl);
 
 /*in _cd*/
 int _cd(char *s, node_t *envl);
 
-ssize_t _getline(char **, size_t *);
+ssize_t _getline(char **, size_t *, int);
 
 /*in command_path*/
 char *what_path(char *name, node_t *pathl);
@@ -91,6 +92,10 @@ int _unsetenv(const char *name, node_t **head);
 
 /*in prompt*/
 char *prompt(void);
+
+/*in nobufgetline*/
+void flush_buffer(char *buffer, size_t size);
+void fill_buffer(char **buf, size_t *size, char c, size_t index);
 
 /*in _ctrl_c*/
 void sig_kill(int sig);
