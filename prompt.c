@@ -21,7 +21,7 @@ char *prompt(void)
 	if (line == NULL)
 		return (NULL);
 	write(1, "$ ", 2);
-	nline = _getline(&line, &length);
+	nline = _getline(&line, &length, STDIN_FILENO);
 /*	nline = getline(&line, &length, stdin);*/
 /*	printf("Prompt - prints the line in ascii digits\n");
 	for (i = 0; i < nline; ++i)
