@@ -53,6 +53,7 @@ char *_getenv(const char *name, node_t *head);
 /*in _help*/
 int _help(char *s);
 
+int _history(void);
 /* in helper_string*/
 int _strlen(const char *);
 int check_first(char *, const char*);
@@ -67,9 +68,6 @@ int _strcmp(char *s1, char *s2);
 node_t *add_node_end(node_t **head, const char *, const char *);
 void free_list(node_t *head);
 int delete_node(node_t **head, const char*name);
-
-/*in _history.c*/
-int _history(void);
 
 /*in linkenv*/
 node_t *env_link(node_t **head);
@@ -103,4 +101,16 @@ void set_to_kill(void);
 void sig_catch(int sig);
 void set_to_catch(void);
 
+/*in history_helper*/
+node_t **delete_first_cmd(node_t **file_str);
+char *_getcmd(int file_strm);
+node_t **history_init(node_t **file_str);
+int node_count(node_t **file_str);
+char *num_to_str(int i);
+
+/*in history*/
+node_t **_resize_list(node_t **file_str);
+void _printhist(node_t *histl, int file_strm, int i);
+node_t **_history_out(node_t **file_str, int file_strm);
+node_t **_history_write(node_t **file_str);
 #endif
