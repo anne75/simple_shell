@@ -130,14 +130,8 @@ ssize_t _getline(char **buf, size_t *size)
 			return (-1); /*buffer freed elsewhere*/
 		if (check_r == 0) /*EOF or C^C*/
 			return (-1) ;
-		if(c == EOF)
+		if(c != EOF)
 		{
-			printf("getline EOF index %lu\n", index);
-			if (index == 0)
-				return (-1);
-			break;
-		}
-
 /*		printf("getline %i buffer %s\n", __LINE__, *buf);*/
 		fill_buffer(buf, size, c, index);
 		if (*buf == NULL)
@@ -146,6 +140,7 @@ ssize_t _getline(char **buf, size_t *size)
 		++index;
 		if (c == '\n')
 			break;
+		}
 	}
 	*((*buf) + index) = '\0'; /*room because check*/
 	printf("_getline RETURN %s %i %s %lu\n", __FILE__, __LINE__, *buf, index);
