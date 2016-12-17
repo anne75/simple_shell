@@ -47,8 +47,14 @@ char *what_path(char *name, node_t *pathl);
 /*in exit*/
 int _exit_(char *s);
 
+/*in flush_buffer*/
+void flush_buffer(char *buffer, size_t size);
+
 /*in _getenv*/
 char *_getenv(const char *name, node_t *head);
+
+/*in _getlinewhithbuffer*/
+ssize_t _getlinewithbuffer(char **line, char **remainder, int fd);
 
 /*in _help*/
 int _help(char *s);
@@ -80,12 +86,25 @@ node_t *link_path(node_t **head, node_t *envl);
 /*in _printenv*/
 void _printenv(node_t *envl);
 
+/*in _realloc*/
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
+
 /*in _setenv*/
 int _setenv(const char *name, const char *value, int overwrite, node_t **head);
+
+/*in _strconcat*/
+char *_strconcat(char *s1, char *s2);
+
+/*in _strspn*/
+int _strspn(char *s, char *delimeter);
+int _strcspn(char *s, char *delimeter);
 
 /*in strtow*/
 char **strtow(char *str, char delimeter);
 void free_strtow(char **s);
+
+/*int _strtok*/
+char *_strtok_r(char **result, char *line, char *delim, char **remain);
 
 /*in _unsetenv*/
 int _unsetenv(const char *name, node_t **head);
