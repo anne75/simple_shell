@@ -102,7 +102,7 @@ void fill_buffer(char **buf, size_t *size, char c, size_t index)
  * @size: size of buffer
  * Return: number of characters read on success, -1 otherwise
  */
-ssize_t _getline(char **buf, size_t *size)
+ssize_t _getline(char **buf, size_t *size, int file_strm)
 {
 	size_t index;
 	char c;
@@ -124,7 +124,7 @@ ssize_t _getline(char **buf, size_t *size)
 	flush_buffer(*buf, *size);
 	while (1)
 	{
-		check_r = read( STDIN_FILENO, &c, 1);
+		check_r = read(file_strm, &c, 1);
 /*		printf("enter while loop %s %i %i %d\n", __FILE__, __LINE__, check_r, c);*/
 		if(check_r == -1)
 			return (-1); /*buffer freed elsewhere*/
