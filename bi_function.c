@@ -6,10 +6,13 @@
  * bi_function - makes an array containing all built-ins info
  * @args: arguments of command
  * @enva: array of environment variables
+ * @pathl: linked list of paths
+ * @histl: linked list of history
  * scans the array of built-ins, return the right function to execute ro NULL
  * Return: result of function or 101
  */
-int bi_function(char **args, char ***enva)
+
+int bi_function(char **args, char ***enva, node_t **pathl, node_t **histl)
 {
 	int i;
 
@@ -37,7 +40,7 @@ int bi_function(char **args, char ***enva)
 	}
 	printf("%s %i\n", __FILE__, __LINE__);
 	if (i == 0)
-		return (_exit_(args[1]));
+		return (_exit_(*enva, pathl, histl));
 	if (i == 1)
 	{
 		_printenv(*enva);

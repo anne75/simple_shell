@@ -34,7 +34,7 @@ typedef struct node_s
 extern char **environ;
 
 /*in bi_function*/
-int bi_function(char **args, char ***enva);
+int bi_function(char **args, char ***enva, node_t **pathl, node_t **histl);
 
 /*in _cd*/
 int _cd(char *s, char **envl);
@@ -48,7 +48,7 @@ char *what_path(char *name, node_t *pathl);
 char **env_array(void);
 
 /*in exit*/
-int _exit_(char *s);
+int _exit_(char **enva, node_t **pathl, node_t **histl);
 
 /*in free_enva*/
 int free_enva(char **enva);
@@ -67,6 +67,7 @@ ssize_t _getlinewithbuffer(char **line, char **remainder, int fd);
 /*in _help*/
 int _help(char *s);
 
+int _history(void);
 /* in helper_string*/
 int _strlen(const char *);
 int check_first(char *, const char*);
@@ -89,7 +90,7 @@ int _history(void);
 int initialize_shell(char ***enva, node_t **pathl);
 
 /*in linkenv*/
-node_t *env_link(node_t **head);
+/*node_t *env_link(node_t **head);*/
 
 /*in link_path*/
 node_t *link_path(node_t **head, char **envl);
@@ -136,5 +137,18 @@ void sig_kill(int sig);
 void set_to_kill(void);
 void sig_catch(int sig);
 void set_to_catch(void);
+
+/*in history_helper*/
+node_t **delete_first_cmd(node_t **file_str);
+char *_getcmd(int file_strm);
+node_t **history_init(node_t **file_str);
+int node_count(node_t **file_str);
+char *num_to_str(int i);
+
+/*in history*/
+node_t **_resize_list(node_t **file_str);
+void _printhist(node_t *histl, int file_strm, int i);
+node_t **_history_out(node_t **file_str, int file_strm);
+node_t **_history_write(node_t **file_str);
 
 #endif

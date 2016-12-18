@@ -20,14 +20,19 @@ int main(void)
 	node_t *pathl;
 	char **enva;
 	int check;
+	node_t *histl;
 
 	fork_flag = 1;
 	printf("%s %i\n", __FILE__, __LINE__);
+
 
 	check =	initialize_shell(&enva, &pathl);
 	if (check == -1)
 		return (0);
 	printf("end initialize %s %i\n", __FILE__, __LINE__);
+	histl = NULL;
+	history_init(&histl);
+
 	while (1)
 	{
 		set_to_catch();
@@ -53,7 +58,7 @@ int main(void)
 				printf("simple shell: strtow ran into error\n");
 				exit(98);
 			}
-			return_value = bi_function(args, &enva);
+			return_value = bi_function(args, &enva, &pathl, &histl);
 			if (return_value !=101)
 			{
 				fork_flag = 0;
