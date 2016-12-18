@@ -56,7 +56,8 @@ char *_getcmd(int file_strm)
  */
 node_t **history_init(node_t **file_str)
 {
-	int fp;
+	int fp, nr;
+	size_t length;
 	char *cmd;
 	mode_t modes;
 
@@ -67,22 +68,35 @@ node_t **history_init(node_t **file_str)
 	if (fp == -1)
 		return (NULL);
 	printf("successfully opened file\n");
-	cmd = _getcmd(fp);
-	if (cmd == NULL)
-		return (file_str);
-	else
+	length = LINE_LENGTH;
+	cmd = malloc(sizeof(char) * length);
+	do {
+		nr = _getline(&cmd, &length, fp);
+		printf("cmd is %s\n", cmd);
+		add_node_end(file_str, cmd, NULL);
+	} while (nr > 0);
+	free(cmd);
+	if (nr == -1)
 	{
-		while (cmd != NULL)
-		{
-			printf("cmd is %s\n", cmd);
-			add_node_end(file_str, cmd, NULL);
-			free(cmd);
-			cmd = _getcmd(fp);
-		}
+		printf("FAIL\n");
+		return (NULL);
 	}
-	printf("LMFAO WHAT\n");
-	close(fp);
-	return (file_str);
+	/* cmd = _getcmd(fp); */
+	/* if (cmd == NULL) */
+	/* 	return (file_str); */
+	/* else */
+	/* { */
+	/* 	while (cmd != NULL) */
+	/* 	{ */
+	/* 		printf("cmd is %s\n", cmd); */
+	/* 		add_node_end(file_str, cmd, NULL); */
+	/* 		free(cmd); */
+	/* 		cmd = _getcmd(fp); */
+	/* 	} */
+	/* } */
+	 printf("LMFAO WHAT\n");
+	 close(fp);
+	 return (file_str);
 }
 
 /**
