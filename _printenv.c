@@ -5,15 +5,18 @@
  * @envl: linked list of environment
  *
  */
-void _printenv(node_t *envl)
+void _printenv(char **enva)
 {
-	if (!envl)
+	int i;
+
+	if (!enva)
 		return;
 
-	while (envl != NULL)
+	i = 0;
+	while (enva[i] != NULL)
 	{
-		write(STDOUT_FILENO, envl->name, _strlen(envl->name));
+		write(STDOUT_FILENO, enva[i], _strlen(enva[i]));
 		write(STDOUT_FILENO, "\n", 1);
-		envl = envl->next;
+		++i;
 	}
 }

@@ -1,70 +1,4 @@
-#include <unistd.h>
-#include <stdlib.h>
 #include "shell.h"
-
-
-/**
- *flush_buffer - cleanup
- *@buffer: a buffer
- *@size: size of buffer
- */
-void flush_buffer(char *buffer, size_t size)
-{
-	size_t i;
-
-	for (i = 0; i < size; ++i)
-		buffer[i] = '\0';
-}
-
-/**
- * _realloc - reallocates a memory block using malloc and free
- * @ptr: pointer to the memory previously allocated
- * @old_size: size in bytes allocated for ptr
- * @new_size: new size in bytes
- * The contents will be unchanged in the range from the start of the
- * region up  to the minimum of the old and new sizes.  If the new size
- * is larger than the old size, the added memory will not be initialized
- *. If ptr is NULL, then the call is  equivalent  to malloc(size), for
- * all  values of size; if size is equal to zero, and ptr is not NULL,
- * then the call is equivalent to free(ptr).
- * Return: pointer to new memory space, or NULL if fails
- */
-void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
-{
-	unsigned int min, i;
-	void *new;
-	char *help1, *help2;
-
-	if (new_size == 0 && ptr != NULL)
-	{
-		free(ptr);
-		return (NULL);
-	}
-	if (new_size == old_size)
-		return (ptr);
-	printf("%s %i malloc\n", __FILE__, __LINE__);
-	new = malloc(new_size);
-	if (new == NULL)
-		return (NULL);
-
-	if (ptr == NULL)
-		return (new);
-
-	min = (old_size > new_size) ? new_size : old_size;
-	i = 0;
-	help1 = ptr;
-	help2 = new;
-
-	while (i < min)
-	{
-		*(help2 + i) = *(help1 + i);
-		++i;
-	}
-	printf("%s %i free\n", __FILE__, __LINE__);
-	free(ptr);
-	return (new);
-}
-
 
 /**
  * fill_buffer
@@ -130,14 +64,8 @@ ssize_t _getline(char **buf, size_t *size, int file_strm)
 			return (-1); /*buffer freed elsewhere*/
 		if (check_r == 0) /*EOF or C^C*/
 			return (-1) ;
-		if(c == EOF)
+		if(c != EOF)
 		{
-			printf("getline EOF index %lu\n", index);
-			if (index == 0)
-				return (-1);
-			break;
-		}
-
 /*		printf("getline %i buffer %s\n", __LINE__, *buf);*/
 		fill_buffer(buf, size, c, index);
 		if (*buf == NULL)
@@ -146,6 +74,7 @@ ssize_t _getline(char **buf, size_t *size, int file_strm)
 		++index;
 		if (c == '\n')
 			break;
+		}
 	}
 	*((*buf) + index) = '\0'; /*room because check*/
 	printf("_getline RETURN %s %i %s %lu\n", __FILE__, __LINE__, *buf, index);

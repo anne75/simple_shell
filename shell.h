@@ -34,21 +34,35 @@ typedef struct node_s
 extern char **environ;
 
 /*in bi_function*/
-int bi_function(char **args, node_t **envl, node_t **pathl, node_t **histl);
+int bi_function(char **args, char ***enva, node_t **pathl, node_t **histl);
 
 /*in _cd*/
-int _cd(char *s, node_t *envl);
+int _cd(char *s, char **envl);
 
 ssize_t _getline(char **, size_t *, int);
 
 /*in command_path*/
 char *what_path(char *name, node_t *pathl);
 
+/*in env_array*/
+char **env_array(void);
+
 /*in exit*/
-int _exit_(node_t **envl, node_t **pathl, node_t **histl);
+int _exit_(char **enva, node_t **pathl, node_t **histl);
+
+/*in free_enva*/
+int free_enva(char **enva);
+
+/*in flush_buffer*/
+void flush_buffer(char *buffer, size_t size);
 
 /*in _getenv*/
-char *_getenv(const char *name, node_t *head);
+/*char *_getenv(const char *name, node_t *head);*/
+char *_getenv(const char *name, char **enva);
+int bi_getenv(const char *name, char **enva);
+
+/*in _getlinewhithbuffer*/
+ssize_t _getlinewithbuffer(char **line, char **remainder, int fd);
 
 /*in _help*/
 int _help(char *s);
@@ -69,24 +83,47 @@ node_t *add_node_end(node_t **head, const char *, const char *);
 void free_list(node_t *head);
 int delete_node(node_t **head, const char*name);
 
+/*in _history.c*/
+int _history(void);
+
+/*in initialize_shell*/
+int initialize_shell(char ***enva, node_t **pathl);
+
 /*in linkenv*/
-node_t *env_link(node_t **head);
+/*node_t *env_link(node_t **head);*/
 
 /*in link_path*/
-node_t *link_path(node_t **head, node_t *envl);
+node_t *link_path(node_t **head, char **envl);
 
 /*in _printenv*/
-void _printenv(node_t *envl);
+void _printenv(char **enva);
+
+/*in _realloc*/
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 
 /*in _setenv*/
-int _setenv(const char *name, const char *value, int overwrite, node_t **head);
+char **realloc_matrix(char **a, char *val);
+/*int _setenv(const char *name, const char *value, int overwrite, node_t **head);*/
+int _setenv(const char *name, const char *value, int overwrite, char ***enva);
+
+
+/*in _strconcat*/
+char *_strconcat(char *s1, char *s2);
+
+/*in _strspn*/
+int _strspn(char *s, char *delimeter);
+int _strcspn(char *s, char *delimeter);
 
 /*in strtow*/
 char **strtow(char *str, char delimeter);
 void free_strtow(char **s);
 
+/*int _strtok*/
+char *_strtok_r(char **result, char *line, char *delim, char **remain);
+
 /*in _unsetenv*/
-int _unsetenv(const char *name, node_t **head);
+/*int _unsetenv(const char *name, node_t **head);*/
+int _unsetenv(const char *name, char **enva);
 
 /*in prompt*/
 char *prompt(void);

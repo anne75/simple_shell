@@ -3,17 +3,19 @@
 /**
  * link_path - create a linked list out of paths in PATH
  * @head: pointer to start of list
- * @envl: pointer to environ list
+ * @enva: pointer to environ list
  * Return: pointer to linked list, NULL otherwise
  */
-node_t *link_path(node_t **head, node_t *envl)
+node_t *link_path(node_t **head, char **enva)
 {
 	int i;
 	char **result;
 	node_t *check;
 
 /*PATH exists, no NULL check*/
-	result = strtow(_getenv("PATH", envl), ':');
+/*	printf("enter %s %i\n", __FILE__, __LINE__);*/
+/*	printf("%s\n", _getenv("PATH", enva));*/
+	result = strtow(_getenv("PATH", enva), ':');
 	if (result == NULL)
 		return (NULL);
 	i = 0;
@@ -26,7 +28,7 @@ node_t *link_path(node_t **head, node_t *envl)
 			free_list(*head);
 			return (NULL);
 		}
-/*		printf("%s %i, %s\n", __FILE__, __LINE__, check->path);*/
+/*		printf("%s %i, %s\n", __FILE__, __LINE__, check->name);*/
 		++i;
 	}
 	free_strtow(result); /*i copied all strings*/

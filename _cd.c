@@ -1,7 +1,7 @@
 #include "shell.h"
 
 
-int _cd(char *s, node_t *envl)
+int _cd(char *s, char **envl)
 {
 	(void) s;
 	(void) envl;
