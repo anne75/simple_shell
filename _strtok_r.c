@@ -25,6 +25,7 @@ char *_strtok_r(char **result, char *line, char *delim, char **remain)
 	index2 = _strcspn(line + index1, delim); /*return of end of line or junk*/
 	if (*(line + index1 + index2)) /*I have not reached the end of the line*/
 	{
+		printf("%s %i malloc\n", __FILE__, __LINE__);
 		*remain =_strdup(line + index1 + index2 + 1);
 		if (*remain == NULL)
 			return (NULL);
@@ -37,6 +38,7 @@ char *_strtok_r(char **result, char *line, char *delim, char **remain)
 	*result = malloc(sizeof(char) * (index2 + 2));
 	*result = _memcpy(*result, line + index1, index2 + 1);
 	(*result)[index2 + 1] = '\0';
+	printf("%s %i free\n", __FILE__, __LINE__);
 	free(line);
 	return (*result);
 }

@@ -11,14 +11,14 @@ ssize_t read_it_all(char **buffer, int fd)
 	int nr, count;
 	char buf_help[BUF_LENGTH];
 
-
 	if (!buffer)
 		return (-1);
 	*buffer = NULL;
 	count = 0;
+	flush_buffer(buf_help, BUF_LENGTH); /*need to initialize - valgrind*/
 	do {
-		flush_buffer(buf_help, BUF_LENGTH);
-		nr = read(fd, buf_help, BUF_LENGTH);
+		nr = read(fd, buf_help, BUF_LENGTH - 1);
+		buf_help[nr + 1] = '\0';
 		*buffer= _strconcat(*buffer, buf_help);
 		count += nr;
 	} while (nr > 0);
@@ -47,36 +47,38 @@ ssize_t _getlinewithbuffer(char **line, char **remainder, int fd)
 	buffer = NULL;
 	if (*remainder == NULL)
 	{
-		check = read_it_all(&buffer, fd);
-		if (check == -1)
-			return (-1);
-		if (check == 0)
-			return (0);
+		if ((check = read_it_all(&buffer, fd)) <= 0)
+		{
+			free(buffer);
+			return (check);
+		}
 	}
-	check_line = _strtok_r(line, buffer, "\n\0", remainder);
+	check_line = _strtok_r(line, buffer, ";\n\0", remainder);
 	if (check_line == NULL)
 		return (-1);
 	return (_strlen(check_line));
 }
 
 
-int main(void)
-{
-	char *line, *remainder;
-	ssize_t nr;
-	int fd, i;
+/* int main(int ac, char **av) */
+/* { */
+/* 	char *line, *remainder; */
+/* 	ssize_t nr; */
+/* 	int fd, i; */
+/* 	(void) ac; */
 
-	line = NULL;
-	remainder = NULL;
+/* 	line = NULL; */
+/* 	remainder = NULL; */
 
-	fd = open("text", O_RDONLY);
-	if (fd == -1)
-		return (0);
-	i = 0;
-	while ((nr = _getlinewithbuffer(&line, &remainder, fd)) > 0)
-	{
-		printf("TURN %i ---%s---\n", i++, line);
-	}
-	close(fd);
-	return (0);
-}
+/* 	fd = open(av[1], O_RDONLY); */
+/* 	if (fd == -1) */
+/* 		return (0); */
+/* 	i = 0; */
+/* 	while ((nr = _getlinewithbuffer(&line, &remainder, fd)) > 0) */
+/* 	{ */
+/* 		printf("TURN %i ---%s---\n", i++, line); */
+/* 		free(line); */
+/* 	} */
+/* 	close(fd); */
+/* 	return (0); */
+/* } */

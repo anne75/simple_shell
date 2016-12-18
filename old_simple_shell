@@ -17,17 +17,19 @@ int main(void)
 /*	int i;*/
 	int return_value;
 	int fork_flag;
+	node_t *envl;
 	node_t *pathl;
-	char **enva;
-	int check;
+
 
 	fork_flag = 1;
+	envl = NULL;
+	printf("%s %i\n", __FILE__, __LINE__);
+	env_link(&envl);
+	pathl = NULL;
 	printf("%s %i\n", __FILE__, __LINE__);
 
-	check =	initialize_shell(&enva, &pathl);
-	if (check == -1)
-		return (0);
-	printf("end initialize %s %i\n", __FILE__, __LINE__);
+	initialize_shell(&envl, &pathl);
+
 	while (1)
 	{
 		set_to_catch();
@@ -46,18 +48,17 @@ int main(void)
 		else
 		{
 			args = strtow(line, ' ');
-/*			printf("%s %i free\n", __FILE__, __LINE__);*/
+			printf("%s %i free\n", __FILE__, __LINE__);
 			free(line);
 			if (args == NULL)
 			{
 				printf("simple shell: strtow ran into error\n");
 				exit(98);
 			}
-			return_value = bi_function(args, &enva);
+			return_value = bi_function(args, &envl);
 			if (return_value !=101)
 			{
 				fork_flag = 0;
-				printf("EXCecutued built in\n");
 			}
 			else
 			{
@@ -96,7 +97,7 @@ int main(void)
 		}
 		fork_flag = 1;
 	}
-	free_enva(enva);
+	free_list(envl);
 	free_list(pathl);
 	return (0);
 }

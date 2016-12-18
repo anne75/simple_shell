@@ -1,27 +1,49 @@
 #include "shell.h"
 
 /**
- * _unsetenv - unset an environmental variable in the linked list
- * @name: name of the variable to remove
- * @head: beginning of linked list
- * Return: 1 for success, -1 for failure
+ * _unsetenv - unset variable from environment
+ * @name: name of variable
+ * @enva: array of environ
+ * Return: 0 on success, -1 on failure
  */
-int _unsetenv(const char *name, node_t **head)
+int _unsetenv(const char *name, char **enva)
 {
-	node_t *temp;
+	int i;
+	char **tmp;
 
-	if (!name || !head)
-		return (-1);
 
-	temp =*head;
-	while (temp != NULL)
+	i = 0;
+	while (enva[i] != NULL)
 	{
-		if (check_first(temp->name, name))
+		if (check_first(enva[i], name))
 		{
-			delete_node(head, name);
-			return (0);
+			free(enva[i]);
+			for (tmp = &enva[i];; ++tmp)
+				if (!(*tmp = *(tmp + 1)))/*true for NULL*/
+					break;
 		}
-		temp = temp->next;
+		++i;
 	}
 	return (0);
 }
+
+
+/* int _unsetenv(const char *name, node_t **head) */
+/* { */
+/* 	node_t *temp; */
+
+/* 	if (!name || !head) */
+/* 		return (-1); */
+
+/* 	temp =*head; */
+/* 	while (temp != NULL) */
+/* 	{ */
+/* 		if (check_first(temp->name, name)) */
+/* 		{ */
+/* 			delete_node(head, name); */
+/* 			return (0); */
+/* 		} */
+/* 		temp = temp->next; */
+/* 	} */
+/* 	return (0); */
+/* } */

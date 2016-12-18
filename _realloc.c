@@ -26,7 +26,6 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 	}
 	if (new_size == old_size)
 		return (ptr);
-	printf("%s %i malloc\n", __FILE__, __LINE__);
 	new = malloc(new_size);
 	if (new == NULL)
 		return (NULL);
@@ -44,7 +43,6 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 		*(help2 + i) = *(help1 + i);
 		++i;
 	}
-	printf("%s %i free\n", __FILE__, __LINE__);
 	free(ptr);
 	return (new);
 }
