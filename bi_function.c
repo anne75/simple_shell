@@ -9,7 +9,7 @@
  * scans the array of built-ins, return the right function to execute ro NULL
  * Return: result of function or 101
  */
-int bi_function(char **args, node_t **envl)
+int bi_function(char **args, node_t **envl, node_t **pathl, node_t **histl)
 {
 	int i;
 
@@ -35,7 +35,7 @@ int bi_function(char **args, node_t **envl)
 		++i;
 	}
 	if (i == 0)
-		return (_exit_(args[1]));
+		return (_exit_(envl, pathl, histl));
 	if (i == 1)
 	{
 		_printenv(*envl);

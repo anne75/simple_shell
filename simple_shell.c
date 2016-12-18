@@ -19,7 +19,7 @@ int main(void)
 	int fork_flag;
 	node_t *envl;
 	node_t *pathl;
-
+	node_t *histl;
 
 	fork_flag = 1;
 	envl = NULL;
@@ -28,6 +28,8 @@ int main(void)
 	pathl = NULL;
 	printf("%s %i\n", __FILE__, __LINE__);
 	link_path(&pathl, envl);
+	histl = NULL;
+	history_init(&histl);
 	while (1)
 	{
 		set_to_catch();
@@ -53,7 +55,7 @@ int main(void)
 				printf("simple shell: strtow ran into error\n");
 				exit(98);
 			}
-			return_value = bi_function(args, &envl);
+			return_value = bi_function(args, &envl, &pathl, &histl);
 			if (return_value !=101)
 			{
 				fork_flag = 0;
