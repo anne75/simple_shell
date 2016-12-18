@@ -34,7 +34,7 @@ typedef struct node_s
 extern char **environ;
 
 /*in bi_function*/
-int bi_function(char **args, node_t **envl);
+int bi_function(char **args, node_t **envl, node_t **pathl, node_t **histl);
 
 /*in _cd*/
 int _cd(char *s, node_t *envl);
@@ -45,7 +45,7 @@ ssize_t _getline(char **, size_t *, int);
 char *what_path(char *name, node_t *pathl);
 
 /*in exit*/
-int _exit_(char *s);
+int _exit_(node_t **envl, node_t **pathl, node_t **histl);
 
 /*in _getenv*/
 char *_getenv(const char *name, node_t *head);
@@ -113,4 +113,5 @@ node_t **_resize_list(node_t **file_str);
 void _printhist(node_t *histl, int file_strm, int i);
 node_t **_history_out(node_t **file_str, int file_strm);
 node_t **_history_write(node_t **file_str);
+
 #endif
