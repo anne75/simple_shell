@@ -63,7 +63,7 @@ ssize_t _getline(char **buf, size_t *size, int file_strm)
 		if(check_r == -1)
 			return (-1); /*buffer freed elsewhere*/
 		if (check_r == 0) /*EOF or C^C*/
-			return (-1) ;
+			return (0) ;
 		if(c != EOF)
 		{
 /*		printf("getline %i buffer %s\n", __LINE__, *buf);*/
