@@ -84,6 +84,7 @@ int _setenv(const char *name, const char *value, int overwrite, char ***enva)
 		printf("%s %i new string %s\n", __FILE__, __LINE__, val);
 /*realloc environ, need triple pointer*/
 		new_enva = realloc_matrix(*enva, val);
+		free(val);
 		printf("%s %i %p\n", __FILE__, __LINE__, new_enva);
 		if (new_enva == NULL)
 			return (-1);
