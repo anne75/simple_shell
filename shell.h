@@ -18,7 +18,7 @@
 /* structs */
 
 /**
- * node_s - generic node for all lists
+ * struct node_s - generic node for all lists
  * @name: a string containing the  name
  * @value: value, executable or NULL
  * @next: pointer to next node
@@ -32,7 +32,7 @@ typedef struct node_s
 
 
 /**
- * shell_s - struct to contain info about the shell
+ * struct shell_s - struct to contain info about the shell
  * @enva: pointer to environment
  * @pathl: pointer to path list
  * @histl: pointer to history list
@@ -99,7 +99,7 @@ int _strcmp(char *s1, char *s2);
 /*in helper_list*/
 node_t *add_node_end(node_t **head, const char *, const char *);
 void free_list(node_t *head);
-int delete_node(node_t **head, const char*name);
+int delete_node(node_t **head, const char *name);
 
 /*in _history.c*/
 int _history(node_t **histl);
@@ -124,7 +124,7 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 
 /*in _setenv*/
 char **realloc_matrix(char **a, char *val);
-/*int _setenv(const char *name, const char *value, int overwrite, node_t **head);*/
+
 int _setenv(const char *name, const char *value, int overwrite, char ***enva);
 
 
