@@ -9,15 +9,18 @@
 int _cd(char *s, char **envl)
 {
 	char *home;
+	int i;
 	(void) s;
 
 	printf("ENTER CD\n");
 	home =_strdup(_getenv("HOME", envl));
+	i = _strlen(home);
+	home[i] = '\0';
 	printf("successfully get home path\n");
 	chdir(home);
 	_setenv("PWD", home, 1, &envl);
 	printf("LLLLLLLLLLLLLLLLLLLLLLLLLLLLL\n");
-	_printenv(envl);
+//	_printenv(envl);
 	printf("HOME IS %s\n", home);
 	free(home);
 	return (0);
