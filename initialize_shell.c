@@ -11,7 +11,7 @@
 int initialize_shell(char ***enva, node_t **pathl,
 		     node_t **histl, char **remainder)
 {
-	node_t *check;
+	node_t *check, **check2;
 
 	printf("%s %i\n", __FILE__, __LINE__);
 	*enva = env_array();
@@ -19,11 +19,13 @@ int initialize_shell(char ***enva, node_t **pathl,
 		return (-1);
 
 	*pathl = NULL;
-	link_path(pathl, *enva);
-
+	check  = link_path(pathl, *enva);
+	if (check == NULL)
+		return (1);
 	*histl = NULL;
-	history_init(histl);
-
+	check2 = history_init(histl);
+	if (check2 == NULL)
+		return (1);
 	*remainder = NULL;
 
 	return (0);
