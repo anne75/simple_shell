@@ -79,12 +79,10 @@ char **strtow(char *str, char delimeter)
 	nbword = getnbw(str, delimeter);
 	if (nbword == 0)
 		return (NULL);
-/*	printf("%s %i malloc %i\n", __FILE__, __LINE__, nbword + 1);*/
 	s = malloc((nbword + 1) * sizeof(*s));
 	if (s == NULL)
 		return (NULL);
 	i = j = word = 0;
-/*	printf("%s nb of words %i\n", __FILE__, nbword);*/
 	while (i < nbword)
 	{
 		if (j == 0 && *str != delimeter)
@@ -98,14 +96,11 @@ char **strtow(char *str, char delimeter)
 		if (word == 1)
 		{
 			word = 0;
-/*			printf("%s %i\n", __FILE__, __LINE__);*/
 			l = _strw(str + j, delimeter);
-/*			printf("%s %i malloc\n", __FILE__, __LINE__);*/
 			s[i] = malloc((l + 1) * sizeof(**s));
 			if (s[i] == NULL)
 			{
 				while (--i >= 0)
-/*					printf("%s %i free\n", __FILE__, __LINE__);*/
 					free(s[i]);
 				free(s);
 				return (NULL);
@@ -117,7 +112,6 @@ char **strtow(char *str, char delimeter)
 		++j;
 	}
 	s[i] = NULL;
-/*	printf("return %s %i\n", __FILE__, __LINE__);*/
 	return (s);
 }
 

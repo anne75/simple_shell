@@ -21,7 +21,7 @@ char *prompt(char **remainder, char **enva, node_t *pathl, node_t *histl)
 /*I have to use malloc*/
 	printf("%s %i malloc\n", __FILE__, __LINE__);
 	write(1, "$ ", 2);
-	printf("%s\n", isatty(STDIN_FILENO) ? "oui" : "non");
+
 	if (isatty(STDIN_FILENO))
 	{
 		line = malloc(sizeof(char) * length);
@@ -35,18 +35,14 @@ char *prompt(char **remainder, char **enva, node_t *pathl, node_t *histl)
 		nline = _getlinewithbuffer(&line, remainder, STDIN_FILENO);
 		printf("%s %i after call remainder is %s\n", __FILE__, __LINE__, *remainder);
 	}
-/*	printf("Prompt - prints the line in ascii digits\n");
-	for (i = 0; i < nline; ++i)
-		printf("%d-", line[i]);
-	puts("");
-*/	if (nline <= 0)
+
+	if (nline <= 0)
 	{
 		printf("prompt: _getline did not work or EOF\n");
 		free(line);
 		printf("freeline in prompt\n");
-		_exit_(enva, &pathl, &histl, NULL);;
+		_exit_(enva, &pathl, &histl, NULL);
 		return (NULL);
 	}
-	line[nline -1] = '\0'; /*get rid of newline*/
 	return (line);
 }
