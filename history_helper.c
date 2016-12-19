@@ -72,8 +72,11 @@ node_t **history_init(node_t **file_str)
 	cmd = malloc(sizeof(char) * length);
 	do {
 		nr = _getline(&cmd, &length, fp);
-		printf("cmd is %s\n", cmd);
-		add_node_end(file_str, cmd, NULL);
+		if (*cmd != '\n')
+		{
+			printf("cmd is %s\n", cmd);
+			add_node_end(file_str, cmd, NULL);
+		}
 	} while (nr > 0);
 	free(cmd);
 	if (nr == -1)
