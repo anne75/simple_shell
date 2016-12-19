@@ -69,6 +69,9 @@ char **env_array(void);
 /*in exit*/
 int _exit_(char **enva, node_t **pathl, node_t **histl, char **args);
 
+/*in execute_command*/
+int execute_command(char *line, char ***enva, node_t **pathl, node_t **histl);
+
 /*in free_enva*/
 int free_enva(char **enva);
 

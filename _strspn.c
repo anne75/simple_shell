@@ -61,15 +61,3 @@ int _strcspn(char *s, char *delimeter)
 	return (i);
 }
 
-
-
-/* int main(void) */
-/* { */
-
-/* 	char *s = "il fait beau"; */
-/* 	char *delimeter = "\0"; */
-
-/* 	printf("strcspn %i-%s-\n", _strcspn(s, delimeter), s + _strcspn(s, delimeter)); */
-
-/* 	return (0); */
-/* } */

@@ -10,7 +10,7 @@ int free_enva(char **enva)
 {
 	int i;
 
-	for(i = 0; enva[i]; ++i)
+	for (i = 0; enva[i]; ++i)
 		free(enva[i]);
 	free(enva);
 	return (0);

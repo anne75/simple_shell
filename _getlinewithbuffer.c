@@ -10,7 +10,8 @@ ssize_t read_it_all(char **buffer, int fd)
 {
 	int nr, count;
 	char buf_help[BUF_LENGTH];
-	printf("%s %i REad it all\n", __FILE__, __LINE__);
+
+	printf("%s %i READ it all\n", __FILE__, __LINE__);
 	if (!buffer)
 		return (-1);
 	*buffer = malloc(sizeof(char) * 1); /*I need to malloc the buffer whatever*/
@@ -24,7 +25,7 @@ ssize_t read_it_all(char **buffer, int fd)
 	{
 		buf_help[nr + 1] = '\0';
 		printf("%s %i before strconcat %s and read %i\n", __FILE__, __LINE__, buf_help, nr);
-		*buffer= _strconcat(*buffer, buf_help);
+		*buffer = _strconcat(*buffer, buf_help);
 		count += nr;
 	}
 
@@ -51,7 +52,8 @@ ssize_t _getlinewithbuffer(char **line, char **remainder, int fd)
 	printf("%s %i before loop is there remainder\n", __FILE__, __LINE__);
 	if (*remainder == NULL)
 	{
-		if ((check = read_it_all(&buffer, fd)) < 0)
+		check = read_it_all(&buffer, fd);
+		if (check < 0)
 		{
 			free(buffer);
 			return (check);
@@ -74,27 +76,3 @@ ssize_t _getlinewithbuffer(char **line, char **remainder, int fd)
 		return (-1);
 	return (_strlen(check_line));
 }
-
-
-/* int main(int ac, char **av) */
-/* { */
-/* 	char *line, *remainder; */
-/* 	ssize_t nr; */
-/* 	int fd, i; */
-/* 	(void) ac; */
-
-/* 	line = NULL; */
-/* 	remainder = NULL; */
-
-/* 	fd = open(av[1], O_RDONLY); */
-/* 	if (fd == -1) */
-/* 		return (0); */
-/* 	i = 0; */
-/* 	while ((nr = _getlinewithbuffer(&line, &remainder, fd)) > 0) */
-/* 	{ */
-/* 		printf("TURN %i ---%s---\n", i++, line); */
-/* 		free(line); */
-/* 	} */
-/* 	close(fd); */
-/* 	return (0); */
-/* } */

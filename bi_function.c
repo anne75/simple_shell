@@ -15,26 +15,15 @@
 int bi_function(char **args, char ***enva, node_t **pathl, node_t **histl)
 {
 	int i;
-
-	char *array[total]  = {
-		"exit",
-		"env",
-		"getenv",
-		"setenv",
-		"unsetenv",
-		"cd",
-		"help",
-		"history",
-		"bad"
-	};
+	char *array[total]  = {"exit", "env", "getenv", "setenv", "unsetenv",
+			       "cd", "help", "history", "bad"};
 
 	if (!args || !*args || !args[0])
 		return (101);
-
 	i = 0;
 	while (i < total)
 	{
-		if ( _strcmp(args[0], array[i]) == 0)
+		if (_strcmp(args[0], array[i]) == 0)
 			break;
 		++i;
 	}
@@ -56,7 +45,7 @@ int bi_function(char **args, char ***enva, node_t **pathl, node_t **histl)
 		if (args[1] != NULL)
 			return (_setenv(args[1], args[2], 1, enva));
 		else
-			return (101);
+			return (0);
 	}
 	if (i == 4)
 		return (_unsetenv(args[1], *enva));

@@ -19,31 +19,11 @@ int _unsetenv(const char *name, char **enva)
 		{
 			free(enva[i]);
 			for (tmp = &enva[i];; ++tmp)
-				if (!(*tmp = *(tmp + 1)))/*true for NULL*/
+				*tmp = *(tmp + 1);
+				if (!*tmp)/*true for NULL*/
 					break;
 		}
 		++i;
 	}
 	return (0);
 }
-
-
-/* int _unsetenv(const char *name, node_t **head) */
-/* { */
-/* 	node_t *temp; */
-
-/* 	if (!name || !head) */
-/* 		return (-1); */
-
-/* 	temp =*head; */
-/* 	while (temp != NULL) */
-/* 	{ */
-/* 		if (check_first(temp->name, name)) */
-/* 		{ */
-/* 			delete_node(head, name); */
-/* 			return (0); */
-/* 		} */
-/* 		temp = temp->next; */
-/* 	} */
-/* 	return (0); */
-/* } */
