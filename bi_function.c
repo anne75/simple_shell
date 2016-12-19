@@ -40,7 +40,7 @@ int bi_function(char **args, char ***enva, node_t **pathl, node_t **histl)
 	}
 	printf("%s %i\n", __FILE__, __LINE__);
 	if (i == 0)
-		return (_exit_(*enva, pathl, histl));
+		return (_exit_(*enva, pathl, histl, args));
 	if (i == 1)
 	{
 		_printenv(*enva);

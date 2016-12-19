@@ -1,5 +1,4 @@
 #include "shell.h"
-#include <stdio.h>
 
 
 /**
@@ -34,7 +33,7 @@ int main(void)
 	{
 		set_to_catch();
 		printf("%s %i\n", __FILE__, __LINE__);
-		line = prompt(&remainder);
+		line = prompt(&remainder, enva, pathl, histl);
 		if (line == NULL)
 		{
 			printf("simple shell: prompt did not work\n");
@@ -60,7 +59,7 @@ int main(void)
 			if (return_value !=101)
 			{
 				fork_flag = 0;
-				printf("EXCecutued built in\n");
+				printf("EXecuted built in\n");
 			}
 			else
 			{
@@ -91,12 +90,12 @@ int main(void)
 			else
 			{
 				waitpid(childpid, &status, 0);
-				free_strtow(args);
 				free(function);
-				printf("%s %i free\n", __FILE__, __LINE__);
 				printf("in parent: child process is %u status is %i current pid is %u\n", childpid, status, getpid());
 			}
 		}
+		printf("FREE ARGS\n");
+		free_strtow(args);
 		fork_flag = 1;
 	}
 	free_enva(enva);

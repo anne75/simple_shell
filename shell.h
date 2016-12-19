@@ -30,6 +30,25 @@ typedef struct node_s
 	struct node_s *next;
 } node_t;
 
+
+/**
+ * shell_s - struct to contain info about the shell
+ * @enva: pointer to environment
+ * @pathl: pointer to path list
+ * @histl: pointer to history list
+ * @args: pointer to arguments
+ * @remainder: pointer to remainder in non interactive mode
+ */
+typedef struct shell_s
+{
+	char **enva;
+	node_t *pathl;
+	node_t *histl;
+	char **args;
+	char *remainder;
+} shell_t;
+
+
 /*extern variable*/
 extern char **environ;
 
@@ -48,7 +67,7 @@ char *what_path(char *name, node_t *pathl);
 char **env_array(void);
 
 /*in exit*/
-int _exit_(char **enva, node_t **pathl, node_t **histl);
+int _exit_(char **enva, node_t **pathl, node_t **histl, char **args);
 
 /*in free_enva*/
 int free_enva(char **enva);
@@ -98,7 +117,7 @@ node_t *link_path(node_t **head, char **envl);
 void _printenv(char **enva);
 
 /*in prompt*/
-char *prompt(char **);
+char *prompt(char **remainder, char **enva, node_t *pathl, node_t *histl);
 
 /*in _realloc*/
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
