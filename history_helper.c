@@ -56,7 +56,7 @@ char *_getcmd(int file_strm)
  */
 node_t **history_init(node_t **file_str)
 {
-	int fp, nr;
+	int fp, nr, i;
 	size_t length;
 	char *cmd;
 	mode_t modes;
@@ -72,9 +72,11 @@ node_t **history_init(node_t **file_str)
 	cmd = malloc(sizeof(char) * length);
 	do {
 		nr = _getline(&cmd, &length, fp);
-		if (*cmd != '\n')
+		if (*cmd != '\n' && *cmd != '\0')
 		{
 			printf("cmd is %s\n", cmd);
+			i = _strlen(cmd);
+			cmd[i - 1] = '\0';
 			add_node_end(file_str, cmd, NULL);
 		}
 	} while (nr > 0);
