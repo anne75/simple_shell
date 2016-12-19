@@ -65,6 +65,6 @@ int bi_function(char **args, char ***enva, node_t **pathl, node_t **histl)
 	if (i == 6)
 		return (_help(args[1]));
 	if (i == 7)
-		return (_history());
+		return (_history(histl));
 	return (101);
 }

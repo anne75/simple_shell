@@ -44,16 +44,19 @@ void _printhist(node_t *histl, int file_strm, int i)
 	printf("int file_strm is %d\n", file_strm);
 	while (histl != NULL)
 	{
-		index = num_to_str(i);
-		if (index == NULL)
-			return;
-		write(file_strm, " ", 1);
-		write(file_strm, index, _strlen(index));
-		write(file_strm, "  ", 2);
+		if (file_strm == STDOUT_FILENO)
+		{
+			index = num_to_str(i);
+			if (index == NULL)
+				return;
+			write(file_strm, " ", 1);
+			write(file_strm, index, _strlen(index));
+			write(file_strm, "  ", 2);
+			free(index);
+		}
 		write(file_strm, histl->name, _strlen(histl->name));
 		write(file_strm, "\n", 1);
 		histl = histl->next;
-		free(index);
 		i++;
 	}
 }

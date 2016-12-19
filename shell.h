@@ -67,7 +67,6 @@ ssize_t _getlinewithbuffer(char **line, char **remainder, int fd);
 /*in _help*/
 int _help(char *s);
 
-int _history(void);
 /* in helper_string*/
 int _strlen(const char *);
 int check_first(char *, const char*);
@@ -84,7 +83,7 @@ void free_list(node_t *head);
 int delete_node(node_t **head, const char*name);
 
 /*in _history.c*/
-int _history(void);
+int _history(node_t **histl);
 
 /*in initialize_shell*/
 int initialize_shell(char ***enva, node_t **pathl);
