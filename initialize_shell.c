@@ -20,7 +20,7 @@ int initialize_shell(char ***enva, node_t **pathl, node_t **histl, char **remain
 	*pathl = NULL;
 	link_path(pathl, *enva);
 
-	histl = NULL;
+	*histl = NULL;
 	history_init(histl);
 
 	*remainder = NULL;
