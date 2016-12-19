@@ -56,7 +56,6 @@ void _printhist(node_t *histl, int file_strm, int i)
 			write(file_strm, "  ", 2);
 			free(index);
 		}
-		printf("char is %d %c\n", *histl->name, *histl->name);
 		if (*histl->name != '\n' && *histl->name != 0)
 			write(file_strm, histl->name, _strlen(histl->name));
 		write(file_strm, "\n", 1);
