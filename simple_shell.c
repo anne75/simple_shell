@@ -15,9 +15,7 @@ int main(void)
 	int check;
 	node_t *histl;
 	char *remainder;
-  
-	args = NULL;
-	fork_flag = 1;
+
 	printf("%s %i\n", __FILE__, __LINE__);
 	histl = NULL;
 
