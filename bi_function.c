@@ -23,8 +23,9 @@ int bi_function(char **args, char ***enva, node_t **pathl, node_t **histl)
 	i = 0;
 	while (i < total)
 	{
-		if (_strcmp(args[0], array[i++]) == 0)
+		if (_strcmp(args[0], array[i]) == 0)
 			break;
+		++i;
 	}
 	printf("%s %i\n", __FILE__, __LINE__);
 	if (i == 0)
