@@ -62,7 +62,7 @@ ssize_t _getline(char **buf, size_t *size, int file_strm)
 /*		printf("enter while loop %s %i %i %d\n", __FILE__, __LINE__, check_r, c);*/
 		if(check_r == -1)
 			return (-1); /*buffer freed elsewhere*/
-		if (check_r == 0) /*EOF or C^C*/
+		if (check_r == 0 && index == 0) /*EOF*/
 			return (0) ;
 		if(c != EOF)
 		{

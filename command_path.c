@@ -35,6 +35,7 @@ char *what_path(char *name, node_t *pathl)
 /*		printf("control which %s\n", fullname);*/
 		if (stat(fullname, &st) == 0)
 			return (fullname);
+		free(fullname);
 		pathl = pathl->next;
 	}
 	return (NULL);
