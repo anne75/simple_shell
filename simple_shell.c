@@ -28,6 +28,7 @@ int main(void)
 	check =	initialize_shell(&enva, &pathl, &histl, &remainder);
 	if (check == -1)
 		return (0);
+	args = NULL;
 	printf("end initialize %s %i\n", __FILE__, __LINE__);
 	while (1)
 	{
@@ -95,8 +96,10 @@ int main(void)
 			}
 		}
 		printf("FREE ARGS\n");
-		free_strtow(args);
+		if (args != NULL)
+			free_strtow(args);
 		fork_flag = 1;
+		printf("%s %i\n", __FILE__, __LINE__);
 	}
 	free_enva(enva);
 	free_list(pathl);
