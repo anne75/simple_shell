@@ -10,6 +10,7 @@
  * @pathl: linked list of the path
  * the function loops throught the PATH, transformed into a linked list
  * and stops when it finds a match, otherwise returns NULL
+ * Return: path for success, NULL for fail
  */
 char *what_path(char *name, node_t *pathl)
 {

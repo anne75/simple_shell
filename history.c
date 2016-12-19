@@ -10,6 +10,8 @@ node_t **_resize_list(node_t **file_str)
 	int total_len, extra_len, i;
 	node_t *tmp;
 
+	if (file_str == NULL || *file_str == NULL)
+		return (file_str);
 	tmp = *file_str;
 	printf("beginning value is %s\n", tmp->name);
 	printf("begin resize_list\n");
@@ -54,7 +56,8 @@ void _printhist(node_t *histl, int file_strm, int i)
 			write(file_strm, "  ", 2);
 			free(index);
 		}
-		write(file_strm, histl->name, _strlen(histl->name));
+		if (*histl->name != '\n' && *histl->name != 0)
+			write(file_strm, histl->name, _strlen(histl->name));
 		write(file_strm, "\n", 1);
 		histl = histl->next;
 		i++;
@@ -72,6 +75,8 @@ node_t **_history_out(node_t **file_str, int file_strm)
 	int total_len, print_start, i;
 	node_t *temp;
 
+	if (file_str == NULL)
+		return (file_str);
 	printf("histroy_out start\n");
 	print_start = 0;
 	printf("going to call _resize_list(file_str)\n");

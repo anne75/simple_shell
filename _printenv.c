@@ -2,7 +2,7 @@
 
 /**
  * _printenv - prints the environment
- * @envl: linked list of environment
+ * @enva: linked list of environment
  *
  */
 void _printenv(char **enva)

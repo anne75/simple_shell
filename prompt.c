@@ -3,9 +3,12 @@
 
 
 /**
- * main - read a line
- *
- * Return: number of characters read
+ * prompt - function that will output prompt and read input
+ * @remainder: first parameter
+ * @enva: environmental 2D array
+ * @pathl: linked list for path
+ * @histl: linked list for history
+ * Return: string read from user
  */
 char *prompt(char **remainder, char **enva, node_t *pathl, node_t *histl)
 {

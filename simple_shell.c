@@ -24,6 +24,7 @@ int main(void)
 
 	fork_flag = 1;
 	printf("%s %i\n", __FILE__, __LINE__);
+	histl = NULL;
 
 	check =	initialize_shell(&enva, &pathl, &histl, &remainder);
 	if (check == -1)

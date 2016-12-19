@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * fill_buffer
+ * fill_buffer - fill buffer with '\0' char
  * @buf: pointer to buffer
  * @size: pointer to size of buffer
  * @c: char to insert at index
@@ -34,6 +34,7 @@ void fill_buffer(char **buf, size_t *size, char c, size_t index)
  * _getline - read a line from standard input
  * @buf: a pointer to a buffer
  * @size: size of buffer
+ * @file_strm: input stream
  * Return: number of characters read on success, -1 otherwise
  */
 ssize_t _getline(char **buf, size_t *size, int file_strm)

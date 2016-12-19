@@ -1,6 +1,13 @@
 #include "shell.h"
 
-
+/**
+ * _exit_ - function that is called when user tries to exit shell
+ * @enva: environmental variables
+ * @pathl: linked list for path
+ * @histl: linked list for history
+ * @args: args received with the function
+ * Return: 0;
+ */
 int _exit_(char **enva, node_t **pathl, node_t **histl, char **args)
 {
 	printf("going to write out history\n");
