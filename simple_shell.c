@@ -47,6 +47,7 @@ int main(void)
 		}
 		else
 		{
+			add_node_end(&histl, line, NULL);
 			args = strtow(line, ' ');
 /*			printf("%s %i free\n", __FILE__, __LINE__);*/
 			free(line);
