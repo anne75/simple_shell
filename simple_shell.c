@@ -21,23 +21,20 @@ int main(void)
 	char **enva;
 	int check;
 	node_t *histl;
+	char *remainder;
 
 	fork_flag = 1;
 	printf("%s %i\n", __FILE__, __LINE__);
 
-
-	check =	initialize_shell(&enva, &pathl);
+	check =	initialize_shell(&enva, &pathl, &histl, &remainder);
 	if (check == -1)
 		return (0);
 	printf("end initialize %s %i\n", __FILE__, __LINE__);
-	histl = NULL;
-	history_init(&histl);
-
 	while (1)
 	{
 		set_to_catch();
 		printf("%s %i\n", __FILE__, __LINE__);
-		line = prompt();
+		line = prompt(&remainder);
 		if (line == NULL)
 		{
 			printf("simple shell: prompt did not work\n");
@@ -103,5 +100,6 @@ int main(void)
 	}
 	free_enva(enva);
 	free_list(pathl);
+	free_list(histl);
 	return (0);
 }

@@ -87,7 +87,7 @@ int delete_node(node_t **head, const char*name);
 int _history(void);
 
 /*in initialize_shell*/
-int initialize_shell(char ***enva, node_t **pathl);
+int initialize_shell(char ***enva, node_t **pathl, node_t **histl, char **);
 
 /*in linkenv*/
 /*node_t *env_link(node_t **head);*/
@@ -97,6 +97,9 @@ node_t *link_path(node_t **head, char **envl);
 
 /*in _printenv*/
 void _printenv(char **enva);
+
+/*in prompt*/
+char *prompt(char **);
 
 /*in _realloc*/
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
@@ -124,9 +127,6 @@ char *_strtok_r(char **result, char *line, char *delim, char **remain);
 /*in _unsetenv*/
 /*int _unsetenv(const char *name, node_t **head);*/
 int _unsetenv(const char *name, char **enva);
-
-/*in prompt*/
-char *prompt(void);
 
 /*in nobufgetline*/
 void flush_buffer(char *buffer, size_t size);

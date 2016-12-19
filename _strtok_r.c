@@ -19,27 +19,25 @@ char *_strtok_r(char **result, char *line, char *delim, char **remain)
 
 	if (line == NULL)
 		line = *remain;
-/*	printf("_strtok entry line %s\n", line);*/
+	printf("_strtok entry line %s\n", line);
 	index1 = _strspn(line, delim); /*get rid of junk in the beginning*/
 
 	index2 = _strcspn(line + index1, delim); /*return of end of line or junk*/
-	if (*(line + index1 + index2)) /*I have not reached the end of the line*/
+/*	printf("%s the indexes to cut at are %i %i and line%s\n", __FILE__, index1, index2, line);*/
+	if (*(line + index1 + index2) && *(line + index1 + index2 + 1)) /*I have not reached the end of the line*/
 	{
-		printf("%s %i malloc\n", __FILE__, __LINE__);
-		*remain =_strdup(line + index1 + index2 + 1);
-		if (*remain == NULL)
-			return (NULL);
-/*		printf("_strtok %i - remain %s\n", __LINE__, *remain);*/
+		*remain = line + index1 + index2 + 1;
+		printf("_strtok %i - remain %s\n", __LINE__, *remain);
 	}
 	else
 	{
 		*remain = NULL;
+		printf("%s Setting remainder to NULL\n", __FILE__);
 	}
 	*result = malloc(sizeof(char) * (index2 + 2));
 	*result = _memcpy(*result, line + index1, index2 + 1);
 	(*result)[index2 + 1] = '\0';
-	printf("%s %i free\n", __FILE__, __LINE__);
-	free(line);
+	printf("%s %i MALLOC result %s\n", __FILE__, __LINE__, *result);
 	return (*result);
 }
 
