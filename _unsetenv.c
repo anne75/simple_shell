@@ -19,7 +19,7 @@ int _unsetenv(const char *name, char **enva)
 		{
 			free(enva[i]);
 			for (tmp = &enva[i];; ++tmp)
-				*tmp = *(tmp + 1)
+				*tmp = *(tmp + 1);
 				if (!*tmp)/*true for NULL*/
 					break;
 		}
