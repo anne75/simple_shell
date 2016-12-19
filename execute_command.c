@@ -20,8 +20,8 @@ int execute_command(char *line, char ***enva, node_t **pathl, node_t **histl)
 	free(line);
 	if (args == NULL)
 	{
-		printf("simple shell: strtow ran into error\n");
-		exit(98);
+		printf("execute_command: empty line\n");
+		return (0);
 	}
 	ret_value = bi_function(args, enva, pathl, histl);
 	if (ret_value != 101)
