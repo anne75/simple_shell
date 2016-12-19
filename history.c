@@ -41,8 +41,6 @@ void _printhist(node_t *histl, int file_strm, int i)
 
 	printf("int i is %d\n", i);
 	printf("enter _printhist\n");
-	if (!histl)
-		return;
 	printf("int file_strm is %d\n", file_strm);
 	while (histl != NULL)
 	{

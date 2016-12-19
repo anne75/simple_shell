@@ -11,19 +11,23 @@ int _unsetenv(const char *name, char **enva)
 	int i;
 	char **tmp;
 
-
 	i = 0;
 	while (enva[i] != NULL)
 	{
 		if (check_first(enva[i], name))
 		{
+			printf("enva[i] is %s\n", enva[i]);
 			free(enva[i]);
+			printf("what now\n");
 			for (tmp = &enva[i];; ++tmp)
+			{
 				*tmp = *(tmp + 1);
 				if (!*tmp)/*true for NULL*/
 					break;
+			}
 		}
 		++i;
 	}
+	*tmp = NULL;
 	return (0);
 }
