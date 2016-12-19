@@ -7,7 +7,7 @@
  *
  * Return: number of characters read
  */
-char *prompt(char **remainder)
+char *prompt(char **remainder, char **enva, node_t *pathl, node_t *histl)
 {
 	ssize_t nline;
 	size_t length;
@@ -41,7 +41,7 @@ char *prompt(char **remainder)
 		printf("prompt: _getline did not work or EOF\n");
 		free(line);
 		printf("freeline in prompt\n");
-		exit(1);
+		_exit_(enva, &pathl, &histl, NULL);;
 		return (NULL);
 	}
 	line[nline -1] = '\0'; /*get rid of newline*/
