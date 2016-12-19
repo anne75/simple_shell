@@ -12,9 +12,9 @@ char *_getenv(const char *name, char **enva)
 {
 	int i;
 
+	printf("enter _getenv\n");
 	if (!enva || !name)
 		return (NULL);
-
 	i = 0;
 	while (enva[i] != NULL)
 	{

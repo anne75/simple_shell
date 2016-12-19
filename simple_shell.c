@@ -22,6 +22,7 @@ int main(void)
 	node_t *histl;
 	char *remainder;
 
+	args = NULL;
 	fork_flag = 1;
 	printf("%s %i\n", __FILE__, __LINE__);
 	histl = NULL;
@@ -96,7 +97,8 @@ int main(void)
 			}
 		}
 		printf("FREE ARGS\n");
-		free_strtow(args);
+		if (args != NULL)
+			free_strtow(args);
 		fork_flag = 1;
 	}
 	free_enva(enva);

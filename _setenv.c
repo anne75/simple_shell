@@ -1,8 +1,5 @@
 #include "shell.h"
 
-
-
-
 /**
  * realloc_matrix - reallocate the matrix for env
  * @a: pointer to array, terminates with NULL
@@ -59,9 +56,16 @@ int _setenv(const char *name, const char *value, int overwrite, char ***enva)
 	if (_strchr(name, '=') != NULL)
 	return (-1);
 /*does not check for = in strings*/
+	printf("in setenv\n");
+	printf("name is %s\n", name);
+	printf("value is %s\n", value);
+	printf("overwrite is %d\n", overwrite);
 	val = _getenv(name, *enva);
 	if (val != NULL && overwrite)
+	{
+		printf("unsetting env val\n");
 		_unsetenv(name, *enva);
+	}
 	if (val == NULL || overwrite != 0)
 	{
 /*create new string*/
@@ -85,6 +89,8 @@ int _setenv(const char *name, const char *value, int overwrite, char ***enva)
 		printf("_______________________________\n");
 		_printenv(new_enva);
 		*enva = new_enva;
+		printf("NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN\n");
+		_printenv(*enva);
 	}
 	return (0);
 }
