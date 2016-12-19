@@ -1,15 +1,19 @@
 #include "shell.h"
 
-
+/**
+ * _help - help command
+ * @s: string input
+ * Return: 0
+ */
 int _help(char *s)
 {
 	(void) s;
 	return (0);
 }
 
-/*
-bi_t *bi_array(char *name)
-{
+/*bi_t *bi_array(char *name)*/
+
+/*{
 	bi_t array[] = {
 		{"exit",
 		 "exit [status]\nExit the shell\n",

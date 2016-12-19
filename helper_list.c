@@ -114,6 +114,7 @@ int delete_node(node_t **head, const char *name)
 
 /**
  * change_node_value - change the value for a particular name
+ * @head: beginning of list
  * @name: name of node
  * @value: new value
  * Return: 1 on success, -1 on failure

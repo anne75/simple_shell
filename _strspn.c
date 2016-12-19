@@ -4,7 +4,7 @@
 /**
  * _strspn - strip the initial part of a string from unwanted chars
  * @s: a string
- * @delim: a string of unwanted chars - dealing with ASCII only
+ * @delimeter: a string of unwanted chars - dealing with ASCII only
  * Return: index of the start of the good things, or -1 on error
  */
 int _strspn(char *s, char *delimeter)
@@ -34,7 +34,7 @@ int _strspn(char *s, char *delimeter)
 /**
  * _strcspn - return the first index in a string with an unwanted char
  * @s: a string
- * @delim: a string of unwanted chars
+ * @delimeter: a string of unwanted chars
  * Return: index of the first unwanted char, or -1 on error
  */
 int _strcspn(char *s, char *delimeter)

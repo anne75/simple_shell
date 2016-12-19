@@ -4,7 +4,7 @@
 
 
 /**
- * realloc_matrix
+ * realloc_matrix - reallocate the matrix for env
  * @a: pointer to array, terminates with NULL
  * @val: string to add
  * This function is only for here, no generic at all
