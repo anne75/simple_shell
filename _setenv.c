@@ -89,36 +89,3 @@ int _setenv(const char *name, const char *value, int overwrite, char ***enva)
 	return (0);
 }
 
-
-
-
-/* /\* int _setenv(const char *name, const char *value, int overwrite, node_t **head) */
-/* { */
-/* 	char *val; */
-/* 	int i, j, k, l; */
-
-/* 	if (!name || !value || !head) */
-/* 		return (-1); */
-/* 	if (_strchr(name, '=') != NULL) */
-/* 		return (-1); */
-/* /\\*does not check for = in strings*\\/ */
-/* 	val = _getenv(name, *head); */
-/* 	if (val != NULL && overwrite) */
-/* 		delete_node(head, name); */
-/* 	if (val == NULL || overwrite != 0) */
-/* 	{ */
-/* 		i = _strlen(name); */
-/* 		j = _strlen(value); */
-/* 		val = malloc(sizeof(char) * (i + j + 2)); */
-/* 		if (val == NULL) */
-/* 			return (-1); */
-/* 		for (l = 0, k = 0; name[k] != '\0'; k++, l++) */
-/* 			val[l] = name[k]; */
-/* 		val[l++] = '='; */
-/* 		for (k = 0; value[k] != '\0'; k++, l++) */
-/* 			val[l] = value[k]; */
-/* 		val[l] = '\0'; */
-/* 		add_node_end(head, val, NULL); */
-/* 	} */
-/* 	return (0); */
-/* } */

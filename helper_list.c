@@ -40,7 +40,7 @@ node_t *add_node_end(node_t **head, const char *name, const char *value)
 
 /*	printf("%s %i %i\n", __FILE__, __LINE__, !head);*/
 
-	if(!head || !name)
+	if (!head || !name)
 		return (NULL);
 /*	printf("%s %i\n", __FILE__, __LINE__);*/
 	new = malloc(sizeof(node_t));

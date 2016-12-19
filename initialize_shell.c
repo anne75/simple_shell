@@ -8,7 +8,8 @@
  * @remainder: for use with getline and buffer
  * Return: 0 on success, -1 on error
  */
-int initialize_shell(char ***enva, node_t **pathl, node_t **histl, char **remainder)
+int initialize_shell(char ***enva, node_t **pathl,
+		     node_t **histl, char **remainder)
 {
 	node_t *check;
 
