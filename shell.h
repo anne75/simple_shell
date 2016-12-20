@@ -126,6 +126,9 @@ char *prompt(char **remainder, char **enva, node_t *pathl, node_t *histl);
 /*in _realloc*/
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 
+/*in remove_comments*/
+char *remove_comments(char *line);
+
 /*in _setenv*/
 char **realloc_matrix(char **a, char *val);
 
