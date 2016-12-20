@@ -32,7 +32,7 @@ char *_getcmd(int file_strm)
 	size_t length;
 	char *line;
 
-	printf("entered _getcmd\n");
+/*	printf("entered _getcmd\n");*/
 	length = LINE_LENGTH;
 	line = malloc(sizeof(char) * length);
 	if (line == NULL)
@@ -71,9 +71,12 @@ node_t **history_init(node_t **file_str)
 	length = LINE_LENGTH;
 	cmd = malloc(sizeof(char) * length);
 	do {
+
+/*		printf("before getline\n");*/
 		nr = _getline(&cmd, &length, fp);
 		if (*cmd != '\n' && *cmd != '\0')
 		{
+/*			printf("cmd is %s\n", cmd);*/
 			i = _strlen(cmd);
 			cmd[i] = '\0';
 			add_node_end(file_str, cmd, NULL);

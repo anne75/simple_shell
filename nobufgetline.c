@@ -76,6 +76,6 @@ ssize_t _getline(char **buf, size_t *size, int file_strm)
 			break;
 	}
 	*((*buf) + index - 1) = '\0'; /*room because check is > 0, get rid of new line*/
-	printf("_getline RETURN %s %i %s %lu\n", __FILE__, __LINE__, *buf, index);
+/*	printf("_getline RETURN %s %i %s %lu\n", __FILE__, __LINE__, *buf, index);*/
 	return (index); /*is 1 + to real value as I get rid of new line here*/
 }
