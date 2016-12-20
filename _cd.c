@@ -20,7 +20,7 @@ int _cd(char *s, char **envl)
 	chdir(home);
 	_setenv("PWD", home, 1, &envl);
 	printf("LLLLLLLLLLLLLLLLLLLLLLLLLLLLL\n");
-//	_printenv(envl);
+/*	_printenv(envl);*/
 	printf("HOME IS %s\n", home);
 	free(home);
 	return (0);
