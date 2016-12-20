@@ -26,8 +26,8 @@ char **realloc_matrix(char **a, char *val)
 	while (a[i])
 	{
 		new[i] = a[i];
-//		printf("REALLOC_M new %s\n", new[i]);
-		i++;
+/*		printf("REALLOC_M new %s\n", new[i]);*/
+		++i;
 	}
 	printf("val is %s\n", val);
 	new[i] = val;
@@ -91,9 +91,9 @@ int _setenv(const char *name, const char *value, int overwrite, char ***enva)
 		if (new_enva == NULL)
 			return (-1);
 
-//		_printenv(new_enva);
+/*		_printenv(new_enva);*/
 		enva = &new_enva;
-//		_printenv(*enva);
+/*		_printenv(*enva);*/
 	}
 	return (0);
 }
