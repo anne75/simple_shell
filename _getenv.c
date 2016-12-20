@@ -45,5 +45,6 @@ int bi_getenv(const char *name, char **enva)
 		return (-1);
 	write(STDOUT_FILENO, res, _strlen(res));
 	write(STDOUT_FILENO, "\n", 1);
+//	free(res);
 	return (0);
 }

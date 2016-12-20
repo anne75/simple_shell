@@ -30,7 +30,9 @@ char **realloc_matrix(char **a, char *val)
 		++i;
 	}
 	printf("val is %s\n", val);
-	new[i] = val;
+	printf("i is %d\n", i);
+	new[i] = _strdup(val);
+	printf("%s\n", val);
 	new[i + 1] = NULL;
 	free(a);
 	printf("%s %i %p\n", __FILE__, __LINE__, (void *)new);
@@ -92,7 +94,7 @@ int _setenv(const char *name, const char *value, int overwrite, char ***enva)
 			return (-1);
 
 /*		_printenv(new_enva);*/
-		enva = &new_enva;
+		*enva = new_enva;
 /*		_printenv(*enva);*/
 	}
 	return (0);
