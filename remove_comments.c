@@ -11,7 +11,7 @@ char *remove_comments(char *line)
 	char *good;
 	int i;
 
-	split = strtow(line, '#');
+	split = strtow(line, "#");
 	if (split == NULL)
 		return (NULL);
 

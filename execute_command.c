@@ -15,7 +15,7 @@ int execute_command(char *line, char ***enva, node_t **pathl, node_t **histl)
 	char *error_message = ": command not found\n";
 
 	args = NULL;
-	args = strtow(line, ' ');
+	args = strtow(line, " \t\v\r\f");
 /*			printf("%s %i free\n", __FILE__, __LINE__);*/
 	free(line);
 	if (args == NULL)
