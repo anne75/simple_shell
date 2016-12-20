@@ -61,13 +61,13 @@ node_t **history_init(node_t **file_str)
 	char *cmd;
 	mode_t modes;
 
-	printf("begin initialization\n");
+/*	printf("begin initialization\n");*/
 	modes = S_IRUSR | S_IWUSR;
 	fp = open(".simple_shell_history", O_RDWR | O_CREAT, modes);
 	printf("fp is %d\n", fp);
 	if (fp == -1)
 		return (NULL);
-	printf("successfully opened file\n");
+/*	printf("successfully opened file\n");*/
 	length = LINE_LENGTH;
 	cmd = malloc(sizeof(char) * length);
 	do {
