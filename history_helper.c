@@ -71,11 +71,9 @@ node_t **history_init(node_t **file_str)
 	length = LINE_LENGTH;
 	cmd = malloc(sizeof(char) * length);
 	do {
-		printf("before getline\n");
 		nr = _getline(&cmd, &length, fp);
 		if (*cmd != '\n' && *cmd != '\0')
 		{
-			printf("cmd is %s\n", cmd);
 			i = _strlen(cmd);
 			cmd[i] = '\0';
 			add_node_end(file_str, cmd, NULL);
@@ -116,9 +114,7 @@ int node_count(node_t **file_str)
 	node_t *tmp;
 
 	for (i = 0, tmp = *file_str; tmp != NULL; i++, tmp = tmp->next)
-	{
-		printf("TMP->NAME is %s\n", tmp->name);
-	}
+		;
 	return (i);
 }
 

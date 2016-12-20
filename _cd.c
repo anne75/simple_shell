@@ -6,22 +6,34 @@
  * @envl: environmental linked list
  * Return: 0 for success
  */
-int _cd(char *s, char **envl)
+int _cd(char **args, char **envl)
 {
 	char *home;
+	char temp[1024];
 	int i;
-	(void) s;
 
-	printf("ENTER CD\n");
-	home =_strdup(_getenv("HOME", envl));
+	if (*args[1] == '-')
+	{
+		if (!_getenv("OLDPWD", envl))
+		{
+			printf("OLDPWD not set");
+			return (-1);
+		}
+		home = _strdup(_getenv("OLDPWD", envl));
+		printf("HOME IS %s\n", home);
+	}
+	else if (args[1] != NULL)
+		home = _strdup(args[1]);
+	else
+		home = _strdup(_getenv("HOME", envl));
 	i = _strlen(home);
 	home[i] = '\0';
-	printf("successfully get home path\n");
+	printf("home is %s\n", home);
 	chdir(home);
+	printf("i think i changed it!\n");
+	getcwd(temp, sizeof(temp));
+	_setenv("OLDPWD", temp, 1, &envl);
 	_setenv("PWD", home, 1, &envl);
-	printf("LLLLLLLLLLLLLLLLLLLLLLLLLLLLL\n");
-//	_printenv(envl);
-	printf("HOME IS %s\n", home);
 	free(home);
 	return (0);
 }
