@@ -20,6 +20,8 @@ char *_getenv(const char *name, char **enva)
 	{
 		if (check_first(enva[i], name))
 		{
+			printf("enva[i - 1] is %s\n", enva[i - 1]);
+			printf("enva[i] is %s\n", enva[i]);
 			return (enva[i] + _strlen(name) + 1);
 		}
 		++i;
