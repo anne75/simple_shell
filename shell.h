@@ -133,7 +133,7 @@ int _setenv(const char *name, const char *value, int overwrite, char ***enva);
 
 
 /*in _strconcat*/
-char *_strconcat(char *s1, char *s2);
+char *_strnconcat(char *s1, char *s2, int n);
 
 /*in _strspn*/
 int _strspn(char *s, char *delimeter);

@@ -24,15 +24,23 @@ ssize_t read_it_all(char **buffer, int fd)
 	while ((nr = read(fd, buf_help, BUF_LENGTH - 1)) > 0)
 	{
 		buf_help[nr + 1] = '\0';
-/*		printf("%s %i before strconcat %s and read %i\n", __FILE__, __LINE__, buf_help, nr);*/
-		*buffer = _strconcat(*buffer, buf_help);
+		printf("%s %i before strconcat %d and read %i\n", __FILE__, __LINE__, buf_help[nr + 1], nr);
+		*buffer = _strnconcat(*buffer, buf_help, nr);
 		count += nr;
+/*		printf("%s last value in buffer is %d isatty is %d\n",__FILE__, buf_help[nr] == '\0', isatty(fd)); */
+		if (isatty(fd) && buf_help[nr] == '\0')
+		{
+			printf("%s breaking out\n", __FILE__);
+			break;
+		}
 	}
 
 	if (nr == -1)
 		return (-1);
 	return (count);
 }
+
+
 
 
 /**
@@ -62,13 +70,15 @@ ssize_t _getlinewithbuffer(char **line, char **remainder, int fd)
 	}
 	else
 	{
-		printf("%s remainder before _strtok is %s\n", __FILE__, *remainder);
+/*		printf("%s remainder before _strtok is %s\n", __FILE__, *remainder);*/
 		check_line = _strtok_r(line, NULL, ";\n\0", remainder);
-		if (*remainder == NULL) /*just reached end of buffer, and buffer malloc'ed*/
-		{
-			printf("free buffer getline\n");
-			/*free(buffer);*/
-		}
+	}
+	puts("++++++++++++++++++++++++++++");
+	printf("%s FREEING BUFFER ? %i\n", __FILE__, *remainder == NULL);
+	if (*remainder == NULL) /*just reached end of buffer, and buffer malloc'ed*/
+	{
+/*		printf("FREE free buffer getline\n");*/
+		free(buffer);
 	}
 /*	printf("LINE %s LINE end of _getline\n", *line);*/
 /*	printf("%s remainder return _strtok is %s\n", __FILE__, *remainder);*/
