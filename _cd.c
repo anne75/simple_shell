@@ -9,10 +9,13 @@
 int _cd(char **args, char **envl)
 {
 	char *home;
-	char temp[1024];
+	char *prev;
 	int i;
 
-	if (*args[1] == '-')
+	printf("enter _cd func\n");
+	if (args[1] == NULL)
+		home = _strdup(_getenv("HOME", envl));
+	else if (*args[1] == '-')
 	{
 		if (!_getenv("OLDPWD", envl))
 		{
@@ -22,17 +25,15 @@ int _cd(char **args, char **envl)
 		home = _strdup(_getenv("OLDPWD", envl));
 		printf("HOME IS %s\n", home);
 	}
-	else if (args[1] != NULL)
-		home = _strdup(args[1]);
 	else
-		home = _strdup(_getenv("HOME", envl));
+		home = _strdup(args[1]);
 	i = _strlen(home);
 	home[i] = '\0';
 	printf("home is %s\n", home);
+	prev = _strdup(_getenv("PWD", envl));
 	chdir(home);
 	printf("i think i changed it!\n");
-	getcwd(temp, sizeof(temp));
-	_setenv("OLDPWD", temp, 1, &envl);
+	_setenv("OLDPWD", prev, 1, &envl);
 	_setenv("PWD", home, 1, &envl);
 	free(home);
 	return (0);
