@@ -33,10 +33,11 @@ int main(void)
 			printf("simple shell: prompt did not work\n");
 			return (-1);
 		}
-		printf("simple shell: The line is %s\n", line);
+/*		printf("simple shell: The line is %s\n", line);*/
 		add_node_end(&histl, line, NULL);
 		execute_command(line, &enva, &pathl, &histl);
 	}
+	printf("RETURN %s\n", __FILE__);
 	free_enva(enva);
 	free_list(pathl);
 	free_list(histl);

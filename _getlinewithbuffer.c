@@ -15,7 +15,7 @@ ssize_t read_it_all(char **buffer, int fd)
 	if (!buffer)
 		return (-1);
 	*buffer = malloc(sizeof(char) * 1); /*I need to malloc the buffer whatever*/
-	printf("malloc buffer getlinewithbuffer\n");
+/*	printf("malloc buffer getlinewithbuffer\n");*/
 	if (*buffer == NULL)
 		return (-1);
 	(*buffer)[0] = '\0';
@@ -24,7 +24,7 @@ ssize_t read_it_all(char **buffer, int fd)
 	while ((nr = read(fd, buf_help, BUF_LENGTH - 1)) > 0)
 	{
 		buf_help[nr + 1] = '\0';
-		printf("%s %i before strconcat %s and read %i\n", __FILE__, __LINE__, buf_help, nr);
+/*		printf("%s %i before strconcat %s and read %i\n", __FILE__, __LINE__, buf_help, nr);*/
 		*buffer = _strconcat(*buffer, buf_help);
 		count += nr;
 	}
@@ -49,7 +49,7 @@ ssize_t _getlinewithbuffer(char **line, char **remainder, int fd)
 
 	if (!line || !remainder)
 		return (-1);
-	printf("%s %i before loop is there remainder\n", __FILE__, __LINE__);
+/*	printf("%s %i before loop is there remainder\n", __FILE__, __LINE__);*/
 	if (*remainder == NULL)
 	{
 		check = read_it_all(&buffer, fd);
@@ -70,8 +70,8 @@ ssize_t _getlinewithbuffer(char **line, char **remainder, int fd)
 			/*free(buffer);*/
 		}
 	}
-	printf("LINE %s LINE end of _getline\n", *line);
-	printf("%s remainder return _strtok is %s\n", __FILE__, *remainder);
+/*	printf("LINE %s LINE end of _getline\n", *line);*/
+/*	printf("%s remainder return _strtok is %s\n", __FILE__, *remainder);*/
 	if (check_line == NULL)
 		return (-1);
 	return (_strlen(check_line));
