@@ -30,6 +30,19 @@ typedef struct node_s
 	struct node_s *next;
 } node_t;
 
+/**
+ * struct bi_s - struct for built in commands
+ * @name: name of command
+ * @help: helper string
+ * @fp: function pointer
+ */
+typedef struct bi_s
+{
+	char *name;
+	char *help;
+	int (*fp)(char **a, char ***e, node_t **p, node_t **h, struct bit_s *a);
+} bi_t;
+
 
 /**
  * struct shell_s - struct to contain info about the shell
@@ -56,7 +69,7 @@ extern char **environ;
 int bi_function(char **args, char ***enva, node_t **pathl, node_t **histl);
 
 /*in _cd*/
-int _cd(char **args, char **envl);
+int _cd(char **args, char ***enva, node_t **pathl, node_t **histl, bi_t *a);
 
 ssize_t _getline(char **, size_t *, int);
 
@@ -67,7 +80,7 @@ char *what_path(char *name, node_t *pathl);
 char **env_array(void);
 
 /*in exit*/
-int _exit_(char **enva, node_t **pathl, node_t **histl, char **args);
+int _exit_(char **args, char ***enva, node_t **pathl, node_t **histl, bi_t *a);
 
 /*in execute_command*/
 int execute_command(char *line, char ***enva, node_t **pathl, node_t **histl);
@@ -82,13 +95,13 @@ void flush_buffer(char *buffer, size_t size);
 /*in _getenv*/
 /*char *_getenv(const char *name, node_t *head);*/
 char *_getenv(const char *name, char **enva);
-int bi_getenv(const char *name, char **enva);
+int bi_getenv(char **args, char ***enva, node_t **pl, node_t **hl, bi_t *a);
 
 /*in _getlinewhithbuffer*/
 ssize_t _getlinewithbuffer(char **line, char **remainder, int fd);
 
 /*in _help*/
-int _help(char *s);
+int _help(char **args, char ***enva, node_t **pathl, node_t **histl, bi_t *a);
 
 /* in helper_string*/
 int _strlen(const char *);

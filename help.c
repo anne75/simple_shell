@@ -2,12 +2,38 @@
 
 /**
  * _help - help command
- * @s: string input
+ * @args: array of arguments
+ * @a: array of built ins
  * Return: 0
  */
-int _help(char *s)
+int _help(char **args, bi_t *a)
 {
-	(void) s;
+	int i;
+
+	if (args[1] == NULL)
+	{
+		i = 0;
+		while (a[i].name != NULL)
+		{
+			write(STDOUT_FILENO, a[i].help, _strlen(a[i].help));
+			write(STDOUT_FILENO, "\n", 1);
+			++i;
+		}
+	}
+	else
+	{
+		i = 0;
+		while (a[i].name != NULL)
+		{
+			if (_strcmp(a[i].name, args[1]) == 0)
+			{
+				write(STDOUT_FILENO, a[i].help,
+				      _strlen(a[i].help));
+				write(STDOUT_FILENO, "\n", 1);
+			}
+			++i;
+		}
+	}
 	return (0);
 }
 

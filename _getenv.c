@@ -42,7 +42,7 @@ int bi_getenv(const char *name, char **enva)
 
 	res = _getenv(name, enva);
 	if (!res)
-		return (-1);
+		return (0);
 	write(STDOUT_FILENO, res, _strlen(res));
 	write(STDOUT_FILENO, "\n", 1);
 /*	free(res);*/

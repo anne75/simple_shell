@@ -3,14 +3,14 @@
 /**
  * _printenv - prints the environment
  * @enva: linked list of environment
- *
+ * Return: 0
  */
-void _printenv(char **enva)
+int _printenv(char **enva)
 {
 	int i;
 
 	if (!enva)
-		return;
+		return (0);
 	printf("enter printenv\n");
 	i = 0;
 	while (enva[i] != NULL)
@@ -20,4 +20,5 @@ void _printenv(char **enva)
 		write(STDOUT_FILENO, "\n", 1);
 		++i;
 	}
+	return (0);
 }
