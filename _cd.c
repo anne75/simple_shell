@@ -2,14 +2,18 @@
 
 /**
  * _cd - function to change directory
- * @args: first parameter
+ * @args: arguments
  * @envl: environmental linked list
+ * @pathl: path linked list
+ * @histl: history linked list
  * Return: 0 for success
  */
-int _cd(char **args, char ***envl)
+int _cd(char **args, char ***envl, node_t **pathl, node_t **histl)
 {
 	char *home;
 	char *prev;
+	(void) pathl;
+	(void) histl;
 
 	printf("enter _cd func\n");
 	if (args[1] == NULL)

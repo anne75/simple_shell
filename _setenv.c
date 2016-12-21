@@ -90,3 +90,19 @@ int _setenv(const char *name, const char *value, int overwrite, char ***enva)
 	}
 	return (0);
 }
+
+/**
+ * _setenv_help - helper function due to built-in struct
+ * @args: argument array
+ * @enva: environment array
+ * @pathl: path linked list
+ * @histl: history linked list
+ * Return: 0 for success
+ */
+int _setenv_help(char **args, char ***enva, node_t **pathl, node_t **histl)
+{
+	(void) pathl;
+	(void) histl;
+	_setenv(args[1], args[2], 1, enva);
+	return (0);
+}

@@ -31,3 +31,22 @@ int _unsetenv(const char *name, char **enva)
 	*tmp = NULL;
 	return (0);
 }
+
+/**
+ * _unsetenv_help - helper function to unsetenv due to bi_t
+ * @args: argument array
+ * @enva: environment array
+ * @pathl: path linked list
+ * @histl: history linked list
+ * Return: 0 for success
+ */
+int _unsetenv_help(char **args, char ***enva, node_t **pathl, node_t **histl)
+{
+	char *name;
+	(void) pathl;
+	(void) histl;
+
+	name = args[1];
+	_unsetenv(name, *enva);
+	return (0);
+}

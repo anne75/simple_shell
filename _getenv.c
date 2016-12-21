@@ -29,15 +29,21 @@ char *_getenv(const char *name, char **enva)
 
 /**
  * bi_getenv - same function, prints result for built-in
- * @name: name of variable to find
- * @enva: pointer to environment
+ * @args: arguments to parse
+ * @env: environmental array
+ * @pathl: path linked list
+ * @histl: history linked list
  * Return: 0 on success, -1 on failure
  */
-int bi_getenv(const char *name, char **enva)
+int bi_getenv(char **args, char ***env, node_t **pathl, node_t **histl)
 {
 	char *res;
+	char **enva;
+	(void) pathl;
+	(void) histl;
 
-	res = _getenv(name, enva);
+	enva = *env;
+	res = _getenv(args[1], enva);
 	if (!res)
 		return (-1);
 	write(STDOUT_FILENO, res, _strlen(res));

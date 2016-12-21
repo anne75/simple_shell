@@ -28,7 +28,7 @@ char *prompt(char **remainder, char **enva, node_t *pathl, node_t *histl)
 		if (line != NULL)
 			free(line);
 		printf("%s freeline in prompt\n", __FILE__);
-		_exit_(enva, &pathl, &histl, NULL);
+		_exit_(NULL, &enva, &pathl, &histl);
 		return (NULL);
 	}
 
