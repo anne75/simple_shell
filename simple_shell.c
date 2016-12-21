@@ -28,7 +28,8 @@ int main(void)
 		set_to_catch();
 		printf("%s %i\n", __FILE__, __LINE__);
 		line = prompt(&remainder, enva, pathl, histl);
-		if (line != NULL) /*line is NULL if nothing or only comments, EOF caught before*/
+		if (line != NULL)
+/*line is NULL if nothing or only comments, EOF caught before*/
 		{
 /*		printf("simple shell: The line is %s\n", line);*/
 			add_node_end(&histl, line, NULL);

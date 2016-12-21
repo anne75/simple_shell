@@ -48,6 +48,7 @@ int execute_command(char *line, char ***enva, node_t **pathl, node_t **histl)
  * @args: arguments for function
  * @function: function name
  * @enva: pointer to environment array
+ * Return: int value
  */
 int run_non_bi(char **args, char *function, char **enva)
 {
@@ -72,7 +73,6 @@ int run_non_bi(char **args, char *function, char **enva)
 	{
 		waitpid(childpid, &status, 0);
 		free(function);
-		printf("in parent: child process is %u status is %i current pid is %u\n", childpid, status, getpid());
 	}
 	printf("FREE ARGSxs");
 	free_strtow(args);

@@ -79,7 +79,7 @@ node_t **_history_out(node_t **file_str, int file_strm)
 	print_start = 0;
 	printf("going to call _resize_list(file_str)\n");
 	file_str = _resize_list(file_str);
-	printf("successfully resize_list, \n");
+	printf("successfully resize_list,\n");
 	total_len = node_count(file_str);
 	printf("node count is %d\n", total_len);
 	if (total_len > 1000)

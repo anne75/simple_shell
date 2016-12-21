@@ -26,7 +26,6 @@ ssize_t read_it_all(char **buffer, int fd)
 		buf_help[nr + 1] = '\0';
 		*buffer = _strnconcat(*buffer, buf_help, nr);
 		count += nr;
-/*		printf("%s last value in buffer is %d isatty is %d\n",__FILE__, buf_help[nr] == '\0', isatty(fd)); */
 		if (isatty(fd) && buf_help[nr] == '\0')
 		{
 			break;

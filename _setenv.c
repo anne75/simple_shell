@@ -59,18 +59,9 @@ int _setenv(const char *name, const char *value, int overwrite, char ***enva)
 	if (_strchr(name, '=') != NULL)
 	return (-1);
 /*does not check for = in strings*/
-	printf("in setenv\n");
-	printf("name is %s\n", name);
-	printf("value is %s\n", value);
-	printf("overwrite is %d\n", overwrite);
 	val = _getenv(name, *enva);
-	printf("string from _getenv is %s\n", val);
 	if (val != NULL && overwrite)
-	{
-		printf("unsetting env val\n");
 		_unsetenv(name, *enva);
-	}
-	printf("_unsetenv success\n");
 	if (val == NULL || overwrite != 0)
 	{
 /*create new string*/

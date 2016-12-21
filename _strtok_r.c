@@ -24,7 +24,6 @@ char *_strtok_r(char **result, char *line, char *delim, char **remain)
 
 	index2 = _strcspn(line + index1, delim);
 /*return of end of line or junk*/
-/* printf("%s the indexes to cut at are %i %i and line%s\n", __FILE__, index1, index2, line);*/
 	if (*(line + index1 + index2) && *(line + index1 + index2 + 1))
 /*I have not reached the end of the line*/
 	{

@@ -15,10 +15,9 @@ char *prompt(char **remainder, char **enva, node_t *pathl, node_t *histl)
 	ssize_t nline;
 	char *line;
 	char *no_comments;
-	write(1, "$ ", 2);
 
+	write(1, "$ ", 2);
 	line = NULL;
-/*	printf("%s %i before call remainder is %s\n", __FILE__, __LINE__, *remainder);*/
 	nline = _getlinewithbuffer(&line, remainder, STDIN_FILENO);
 	printf("%s %i after call return value is %lu\n", __FILE__, __LINE__, nline);
 
@@ -34,6 +33,5 @@ char *prompt(char **remainder, char **enva, node_t *pathl, node_t *histl)
 	}
 
 	no_comments = remove_comments(line);
-	printf("%s LINE before %p line after%p\n", __FILE__, (void *) line, (void *) no_comments);
 	return (no_comments);
 }

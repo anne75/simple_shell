@@ -61,22 +61,17 @@ node_t **history_init(node_t **file_str)
 	char *cmd;
 	mode_t modes;
 
-/*	printf("begin initialization\n");*/
 	modes = S_IRUSR | S_IWUSR;
 	fp = open(".simple_shell_history", O_RDWR | O_CREAT, modes);
 	printf("fp is %d\n", fp);
 	if (fp == -1)
 		return (NULL);
-/*	printf("successfully opened file\n");*/
 	length = LINE_LENGTH;
 	cmd = malloc(sizeof(char) * length);
 	do {
-
-/*		printf("before getline\n");*/
 		nr = _getline(&cmd, &length, fp);
 		if (*cmd != '\n' && *cmd != '\0')
 		{
-/*			printf("cmd is %s\n", cmd);*/
 			i = _strlen(cmd);
 			cmd[i] = '\0';
 			add_node_end(file_str, cmd, NULL);
@@ -88,22 +83,9 @@ node_t **history_init(node_t **file_str)
 		printf("FAIL\n");
 		return (NULL);
 	}
-	/* cmd = _getcmd(fp); */
-	/* if (cmd == NULL) */
-	/* 	return (file_str); */
-	/* else */
-	/* { */
-	/* 	while (cmd != NULL) */
-	/* 	{ */
-	/* 		printf("cmd is %s\n", cmd); */
-	/* 		add_node_end(file_str, cmd, NULL); */
-	/* 		free(cmd); */
-	/* 		cmd = _getcmd(fp); */
-	/* 	} */
-	/* } */
-	 printf("LMFAO WHAT\n");
-	 close(fp);
-	 return (file_str);
+	printf("LMFAO WHAT\n");
+	close(fp);
+	return (file_str);
 }
 
 /**
@@ -137,9 +119,9 @@ char *num_to_str(int i)
 		num_str = malloc(sizeof(char) * 2);
 		num_str[0] = '0';
 		num_str[1] = '\0';
-		return num_str;
+		return (num_str);
 	}
-	for (dig = 1, num = 0; i/dig > 0; dig *= 10, num++)
+	for (dig = 1, num = 0; i / dig > 0; dig *= 10, num++)
 		;
 	num_str = malloc(sizeof(char) * (num + 1));
 	if (num_str == NULL)

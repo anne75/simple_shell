@@ -69,13 +69,12 @@ ssize_t _getline(char **buf, size_t *size, int file_strm)
 			fill_buffer(buf, size, c, index);
 			if (*buf == NULL)
 				return (-1);
-/*printf("%s %i %lu newly inserted %c\n", __FILE__, __LINE__, index, *(position + index));*/
 			++index;
 		}
 		if (c == '\n')
 			break;
 	}
-	*((*buf) + index - 1) = '\0'; /*room because check is > 0, get rid of new line*/
-/*	printf("_getline RETURN %s %i %s %lu\n", __FILE__, __LINE__, *buf, index);*/
+	*((*buf) + index - 1) = '\0';
+	/*room because check is > 0, get rid of new line*/
 	return (index); /*is 1 + to real value as I get rid of new line here*/
 }

@@ -34,6 +34,7 @@ int getnbw(unsigned char *str, int ascii[])
 int _strw(unsigned char *s, int ascii[])
 {
 	int i;
+
 	i = 0;
 	while (ascii[*(s + i)] != 0 && *(s + i) != '\0')
 		++i;
@@ -79,7 +80,7 @@ char **strtow(char *string, char *d)
 	str = (unsigned char *)string;
 	for (i = 0; i < 128; ++i)
 		ascii[i] = 0;
-	for (;*t ; t++)
+	for (; *t; t++)
 		ascii[*t] = 1;
 
 	nbword = getnbw(str, ascii);
@@ -89,7 +90,7 @@ char **strtow(char *string, char *d)
 	if (s == NULL)
 		return (NULL);
 	remainder = &string;
-	for (i = 0; i <nbword; ++i)
+	for (i = 0; i < nbword; ++i)
 	{
 		s[i] = _strtok_r(&tmp, NULL, d, remainder);
 	}

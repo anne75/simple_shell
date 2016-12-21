@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * _strconcat - concatenate 2 strings
+ * _strnconcat - concatenate 2 strings
  * @s1: first string, malloc'ed or realloc'ed
  * @s2: Buffer of length BUF_LENGTH to add to first string
  * @nr: length to copy
