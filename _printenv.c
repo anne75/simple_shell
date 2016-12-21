@@ -19,11 +19,9 @@ int _printenv(char **args, char ***env, node_t **pathl, node_t **histl)
 	enva = *env;
 	if (!enva)
 		return (-1);
-	printf("enter printenv\n");
 	i = 0;
 	while (enva[i] != NULL)
 	{
-		printf("enter while loop\n");
 		write(STDOUT_FILENO, enva[i], _strlen(enva[i]));
 		write(STDOUT_FILENO, "\n", 1);
 		++i;

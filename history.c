@@ -8,18 +8,12 @@
 node_t **_resize_list(node_t **file_str)
 {
 	int total_len, extra_len, i;
-	node_t *tmp;
 
 	if (file_str == NULL || *file_str == NULL)
 		return (file_str);
-	tmp = *file_str;
-	printf("beginning value is %s\n", tmp->name);
-	printf("begin resize_list\n");
 	total_len = node_count(file_str);
-	printf("total_len is %d\n", total_len);
 	if (total_len <= 4096)
 		return (file_str);
-	printf("shouldnt' have gotten here\n");
 	extra_len = total_len - 4096;
 	for (i = 0; i < extra_len; i++)
 	{
@@ -39,9 +33,6 @@ void _printhist(node_t *histl, int file_strm, int i)
 {
 	char *index;
 
-	printf("int i is %d\n", i);
-	printf("enter _printhist\n");
-	printf("int file_strm is %d\n", file_strm);
 	while (histl != NULL)
 	{
 		if (file_strm == STDOUT_FILENO)
@@ -75,20 +66,14 @@ node_t **_history_out(node_t **file_str, int file_strm)
 
 	if (file_str == NULL)
 		return (file_str);
-	printf("histroy_out start\n");
 	print_start = 0;
-	printf("going to call _resize_list(file_str)\n");
 	file_str = _resize_list(file_str);
-	printf("successfully resize_list,\n");
 	total_len = node_count(file_str);
-	printf("node count is %d\n", total_len);
 	if (total_len > 1000)
 		print_start = total_len - 1000;
 	temp = *file_str;
 	for (i = 0; i < print_start; i++, temp = temp->next)
 		;
-	printf("i is %d\n", i);
-	printf("begin print function\n");
 	_printhist(temp, file_strm, print_start);
 	return (file_str);
 }
@@ -104,9 +89,7 @@ node_t **_history_write(node_t **file_str)
 	mode_t permish;
 
 	permish = S_IRUSR | S_IWUSR;
-	printf("begin write\n");
 	fd = open(".simple_shell_history", O_RDWR | O_CREAT | O_TRUNC, permish);
-	printf("file open, stream is %d\n", fd);
 	if (fd == -1)
 		return (NULL);
 	file_str = _history_out(file_str, fd);

@@ -15,9 +15,7 @@ int _exit_(char **args, char ***env, node_t **pathl, node_t **histl)
 
 	enva = *env;
 	i = 0;
-	printf("going to write out history\n");
 	_history_write(histl);
-	printf("GOING TO FREE enva\n");
 	free_strtow(enva);
 	free_list(*pathl);
 	free_list(*histl);
@@ -27,7 +25,6 @@ int _exit_(char **args, char ***env, node_t **pathl, node_t **histl)
 		{
 			i = _atoi(args[1]);
 		}
-		printf("%s FREE ARGS\n", __FILE__);
 		free_strtow(args);
 	}
 	exit(i);

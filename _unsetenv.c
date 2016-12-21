@@ -16,9 +16,7 @@ int _unsetenv(const char *name, char **enva)
 	{
 		if (check_first(enva[i], name))
 		{
-			printf("enva[i] is %s\n", enva[i]);
 			free(enva[i]);
-			printf("what now\n");
 			for (tmp = &enva[i];; ++tmp)
 			{
 				*tmp = *(tmp + 1);

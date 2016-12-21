@@ -38,11 +38,8 @@ node_t *add_node_end(node_t **head, const char *name, const char *value)
 	node_t *new;
 	node_t **tmp;
 
-/*	printf("%s %i %i\n", __FILE__, __LINE__, !head);*/
-
 	if (!head || !name)
 		return (NULL);
-/*	printf("%s %i\n", __FILE__, __LINE__);*/
 	new = malloc(sizeof(node_t));
 	if (new == NULL)
 		return (NULL);
@@ -68,8 +65,6 @@ node_t *add_node_end(node_t **head, const char *name, const char *value)
 		}
 	}
 	new->next = NULL;
-/*try to apply Linus Torvald's good taste, no if*/
-/*	printf("%s %i\n", __FILE__, __LINE__);*/
 	tmp = head;
 	while (*tmp != NULL)
 		tmp = &((*tmp)->next);

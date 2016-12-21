@@ -17,17 +17,13 @@ void fill_buffer(char **buf, size_t *size, char c, size_t index)
 		return; /*should exit really*/
 	if (index >= *size - 1) /*I need 2 free spots at this point*/
 	{
-		printf("realloc buffer\n");
 		*buf = _realloc(*buf, *size, *size * 2);
 		if (*buf == NULL)
 			return;
 		*size = *size * 2;
-		printf("after realloc %lu,\n", *size);
 	}
 	p = *buf;
-/*	printf("fill_buffer, char is %d index is %lu\n", c, index);*/
 	*(p + index) = c;
-/*	printf("fill_buffer, assigned %c", *((*buf) + index));*/
 }
 
 /**
@@ -48,7 +44,6 @@ ssize_t _getline(char **buf, size_t *size, int file_strm)
 	if (!*buf)
 	{
 		*size = BUF_LENGTH;
-		printf("%s %i malloc\n", __FILE__, __LINE__);
 		*buf = malloc(*size * sizeof(char));
 		if (*buf == NULL)
 			return (-1);
@@ -58,14 +53,12 @@ ssize_t _getline(char **buf, size_t *size, int file_strm)
 	while (1)
 	{
 		check_r = read(file_strm, &c, 1);
-/*		printf("enter while loop %s %i %i %d\n", __FILE__, __LINE__, check_r, c);*/
 		if (check_r == -1)
 			return (-1); /*buffer freed elsewhere*/
 		if (check_r == 0 && index == 0) /*EOF*/
 			return (0);
 		if (c != EOF)
 		{
-/*		printf("getline %i buffer %s\n", __LINE__, *buf);*/
 			fill_buffer(buf, size, c, index);
 			if (*buf == NULL)
 				return (-1);
