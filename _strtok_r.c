@@ -19,7 +19,7 @@ char *_strtok_r(char **result, char *line, char *delim, char **remain)
 
 	if (line == NULL)
 		line = *remain;
-	printf("_strtok entry line %s\n", line);
+
 	index1 = _strspn(line, delim); /*get rid of junk in the beginning*/
 
 	index2 = _strcspn(line + index1, delim);
@@ -29,16 +29,13 @@ char *_strtok_r(char **result, char *line, char *delim, char **remain)
 /*I have not reached the end of the line*/
 	{
 		*remain = line + index1 + index2 + 1;
-		printf("_strtok %i - remain %s\n", __LINE__, *remain);
 	}
 	else
 	{
 		*remain = NULL;
-		printf("%s Setting remainder to NULL\n", __FILE__);
 	}
 	*result = malloc(sizeof(char) * (index2 + 2));
 	*result = _memcpy(*result, line + index1, index2);
 	(*result)[index2] = '\0';
-	printf("%s %i MALLOC result %s\n", __FILE__, __LINE__, *result);
 	return (*result);
 }

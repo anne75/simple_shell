@@ -24,20 +24,17 @@ ssize_t read_it_all(char **buffer, int fd)
 	while ((nr = read(fd, buf_help, BUF_LENGTH - 1)) > 0)
 	{
 		buf_help[nr + 1] = '\0';
-		printf("%s %i before strconcat %d and read %i\n", __FILE__, __LINE__, buf_help[nr + 1], nr);
 		*buffer = _strnconcat(*buffer, buf_help, nr);
 		count += nr;
 /*		printf("%s last value in buffer is %d isatty is %d\n",__FILE__, buf_help[nr] == '\0', isatty(fd)); */
 		if (isatty(fd) && buf_help[nr] == '\0')
 		{
-			printf("%s breaking out\n", __FILE__);
 			break;
 		}
 	}
 
 	if (nr == -1)
 		return (-1);
-	printf("%s return of readitall count %i address %p\n", __FILE__, count, (void *) *buffer);
 	return (count);
 }
 
@@ -67,7 +64,6 @@ ssize_t _getlinewithbuffer(char **line, char **remainder, int fd)
 			free(buffer);
 			return (check);
 		}
-		printf("%s return of readitall count %lu address %p\n", __FILE__, check, (void *) buffer);
 		check_line = _strtok_r(line, buffer, ";\n\0", remainder);
 	}
 	else
@@ -75,14 +71,11 @@ ssize_t _getlinewithbuffer(char **line, char **remainder, int fd)
 /*		printf("%s remainder before _strtok is %s\n", __FILE__, *remainder);*/
 		check_line = _strtok_r(line, NULL, ";\n\0", remainder);
 	}
-	puts("++++++++++++++++++++++++++++");
-	printf("%s FREEING BUFFER ? %i\n", __FILE__, *remainder == NULL);
 	if (*remainder == NULL) /*just reached end of buffer, and buffer malloc'ed*/
 	{
 		printf("FREE free buffer getline%p\n", (void *) buffer);
 		free(buffer);
 	}
-	printf("LINE %p LINE end of _getline\n", (void *) *line);
 /*	printf("%s remainder return _strtok is %s\n", __FILE__, *remainder);*/
 	if (check_line == NULL)
 		return (-1);

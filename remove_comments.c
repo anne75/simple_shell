@@ -17,7 +17,7 @@ char *remove_comments(char *line)
 
 	good = split[0];
 	free(line);
-	printf("%s the good stuff %s\n", __FILE__, good);
+
 	i = 1;
 	while (split[i] != NULL)
 		++i;

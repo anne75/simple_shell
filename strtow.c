@@ -14,7 +14,6 @@ int getnbw(unsigned char *str, int ascii[])
 	nbword = 0;
 	while (*(str + i) != '\0')
 	{
-		printf("%s ascii[%c] = %i\n", str,*(str + i), ascii[*(str + i)]);
 		if (i == 0 && ascii[*str] != 1)
 			nbword++;
 		if (ascii[*(str + i)] == 1 && ascii[*(str + i + 1)] != 1 &&
@@ -35,11 +34,9 @@ int getnbw(unsigned char *str, int ascii[])
 int _strw(unsigned char *s, int ascii[])
 {
 	int i;
-	printf("SSSSSSSSSSSSSSSSSSSS");
 	i = 0;
-	while (ascii[*(s + i)] != 0 && *(s + i) != '\0'){
-		printf("--%c--", *(s + i));
-		++i;}
+	while (ascii[*(s + i)] != 0 && *(s + i) != '\0')
+		++i;
 	return (i);
 }
 
@@ -85,9 +82,7 @@ char **strtow(char *string, char *d)
 	for (;*t ; t++)
 		ascii[*t] = 1;
 
-	printf("%s %s\n", string, d);
 	nbword = getnbw(str, ascii);
-	printf("%s NUmber of words %i\n", __FILE__, nbword);
 	if (nbword == 0)
 		return (NULL);
 	s = malloc((nbword + 1) * sizeof(*s));
@@ -97,7 +92,6 @@ char **strtow(char *string, char *d)
 	for (i = 0; i <nbword; ++i)
 	{
 		s[i] = _strtok_r(&tmp, NULL, d, remainder);
-		printf("%s\n", s[i]);
 	}
 	s[i] = NULL;
 	return (s);
