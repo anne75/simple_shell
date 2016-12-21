@@ -53,7 +53,6 @@ passing the arguments and the environment to the program.
 .SS Path Search
 When locating a command, the shell first looks to see if it has a shell
 function by that name.
-Then it looks for a builtin command by that name.
 If a builtin command is not found, one of two things happen:
 .IT
 Command names containing a slash are simply executed without performing
@@ -69,25 +68,28 @@ Each entry consists of a directory name.
 .SS Builtins
 This section lists the current implemented builtins.
 .TP
-.B cd
-[directory]
+.B cd "[directory]"
 Switch to the specified path.
+.TP
 .B env
 Prints the environment variable
-.B exit
-[exitstatus]
+.TP
+.B exit "[exitstatus]"
 Terminates the shell process with exitstatus value. 0 by default.
-.B getenv
-NAME
+.TP
+.B getenv "NAME"
 Return the value of the variable NAME if it exists
-.B help
-[command]
+.TP
+.B help "[command]"
 Displays the syntax of the builtin command or all.
-.B setenv
-NAME VALUE
+.TP
+.B history
+Lists the last 1000 commands
+.TP
+.B setenv "NAME VALUE"
 Set or replaces variable NAME with value VALUE
-.B unsetenv
-NAME
+.TP
+.B unsetenv "NAME"
 Unset the variable NAME from the environment.
 .SH SEE ALSO
 .Xr csh 1 ,
@@ -96,8 +98,10 @@ Unset the variable NAME from the environment.
 .Xr sysctl 8
 .SH BUGS
 some...
+.SH SOURCE CODE
+https://github.com/anne75/simple_shell
 .SH AUTHORS
 Jay Wang - Anne Cognet
 .SH HISTORY
-Project done in 10 days in december 2016 while students at Holberton School
+Project done in 11 days in december 2016 while students at Holberton School
 
