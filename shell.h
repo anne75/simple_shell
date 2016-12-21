@@ -48,6 +48,18 @@ typedef struct shell_s
 	char *remainder;
 } shell_t;
 
+/**
+ * struct bi_s - struct for built in commands
+ * @name: name of command
+ * @help: helper string
+ * @fp: function to pointer
+ */
+typedef struct bi_s
+{
+	char *name;
+	char *help;
+        int (*fp)(char **args, char ***enva, node_t **pathl, node_t **histl);
+} bi_t;
 
 /*extern variable*/
 extern char **environ;
@@ -56,7 +68,7 @@ extern char **environ;
 int bi_function(char **args, char ***enva, node_t **pathl, node_t **histl);
 
 /*in _cd*/
-int _cd(char **args, char ***envl);
+int _cd(char **args, char ***envl, node_t **pathl, node_t **histl);
 
 ssize_t _getline(char **, size_t *, int);
 
@@ -67,7 +79,7 @@ char *what_path(char *name, node_t *pathl);
 char **env_array(void);
 
 /*in exit*/
-int _exit_(char **enva, node_t **pathl, node_t **histl, char **args);
+int _exit_(char **args, char ***enva, node_t **pathl, node_t **histl);
 
 /*in execute_command*/
 int execute_command(char *line, char ***enva, node_t **pathl, node_t **histl);
@@ -82,13 +94,14 @@ void flush_buffer(char *buffer, size_t size);
 /*in _getenv*/
 /*char *_getenv(const char *name, node_t *head);*/
 char *_getenv(const char *name, char **enva);
-int bi_getenv(const char *name, char **enva);
+int bi_getenv(char **args, char ***enva, node_t **pathl, node_t **histl);
 
 /*in _getlinewhithbuffer*/
 ssize_t _getlinewithbuffer(char **line, char **remainder, int fd);
 
 /*in _help*/
-int _help(char *s);
+int _help(char **args, char ***enva, node_t **pathl, node_t **histl);
+int _help_all(bi_t *array);
 
 /* in helper_string*/
 int _strlen(const char *);
@@ -107,7 +120,7 @@ void free_list(node_t *head);
 int delete_node(node_t **head, const char *name);
 
 /*in _history.c*/
-int _history(node_t **histl);
+int _history(char **args, char ***enva, node_t **pathl, node_t **histl);
 
 /*in initialize_shell*/
 int initialize_shell(char ***enva, node_t **pathl, node_t **histl, char **);
@@ -119,7 +132,7 @@ int initialize_shell(char ***enva, node_t **pathl, node_t **histl, char **);
 node_t *link_path(node_t **head, char **envl);
 
 /*in _printenv*/
-void _printenv(char **enva);
+int _printenv(char **args, char ***enva, node_t **pathl, node_t **histl);
 
 /*in prompt*/
 char *prompt(char **remainder, char **enva, node_t *pathl, node_t *histl);
@@ -134,7 +147,7 @@ char *remove_comments(char *line);
 char **realloc_matrix(char **a, char *val);
 
 int _setenv(const char *name, const char *value, int overwrite, char ***enva);
-
+int _setenv_help(char **args, char ***enva, node_t **pathl, node_t **histl);
 
 /*in _strconcat*/
 char *_strnconcat(char *s1, char *s2, int n);
@@ -153,6 +166,7 @@ char *_strtok_r(char **result, char *line, char *delim, char **remain);
 /*in _unsetenv*/
 /*int _unsetenv(const char *name, node_t **head);*/
 int _unsetenv(const char *name, char **enva);
+int _unsetenv_help(char **args, char ***enva, node_t **pathl, node_t **histl);
 
 /*in nobufgetline*/
 void flush_buffer(char *buffer, size_t size);
