@@ -16,7 +16,7 @@ A command will be of the type `$ commandname argument`
 This shell can handle two types of commands: builtins and normal program.
 #####Built-ins and normal programs
 Commands will be searched by their name in that order. Shell built-ins will be executed internally while normal programs will spawn a new (child) process.
-If for example the `commandname` is `env`, the simple shell will first look through the (linked) list of built-ins, find it and then run the matching function. If the `commandname` is `ls`, the simple shell will not find that name among the built-ins. It will the proceed to look for an entry with that name in the paths listed `$PATH` variable. It will find it in `/bin` and so the simple shell will create a child process to run `/bin/ls`.
+If for example the `commandname` is `env`, the simple shell will first look through the (linked) list of built-ins, find it and then run the matching function. If the `commandname` is `ls`, the simple shell will not find that name among the built-ins. It will then proceed to look for an entry with that name in the paths listed `$PATH` variable. It will find it in `/bin` and so the simple shell will create a child process to run `/bin/ls`.
 #####List of built-ins
 Currently the list of built-ins is:  
 * cd [directory]  
