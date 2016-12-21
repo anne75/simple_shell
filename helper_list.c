@@ -59,8 +59,8 @@ node_t *add_node_end(node_t **head, const char *name, const char *value)
 		new->value = _strdup(value);
 		if (new->value == NULL)
 		{
-			free(new);
 			free(new->name);
+			free(new);
 			return (NULL);
 		}
 	}

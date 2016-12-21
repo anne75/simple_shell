@@ -27,13 +27,17 @@ char *what_path(char *name, node_t *pathl)
 		length_path = _strlen(pathl->name);
 		fullname = malloc(sizeof(char) * (length_path + length_name + 2));
 		if (fullname == NULL)
+		{
 			return (NULL);
+		}
 		_memcpy(fullname, pathl->name, length_path);
 		fullname[length_path] = '/';
 		_memcpy(fullname + length_path + 1, name, length_name);
 		fullname[length_name + length_path + 1] = '\0';
 		if (stat(fullname, &st) == 0)
+		{
 			return (fullname);
+		}
 		free(fullname);
 		pathl = pathl->next;
 	}

@@ -72,14 +72,13 @@ int _cd(char **args, char ***envl, node_t **pathl, node_t **histl);
 
 /*in command_path.c*/
 char *what_path(char *name, node_t *pathl);
+node_t *add_node_head(node_t **head, const char *name, const char *value);
 
 /*in _ctrl_c.c*/
 void sig_kill(int sig);
 void set_to_kill(void);
 void sig_catch(int sig);
 void set_to_catch(void);
-
-ssize_t _getline(char **, size_t *, int);
 
 /*in env_array.c*/
 char **env_array(void);
