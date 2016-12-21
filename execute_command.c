@@ -15,8 +15,10 @@ int execute_command(char *line, char ***enva, node_t **pathl, node_t **histl)
 	char *error_message = ": command not found\n";
 
 	args = NULL;
+
 	args = strtow(line, " \t\v\r\f");
 /*			printf("%s %i free\n", __FILE__, __LINE__);*/
+	printf("%s %i ===============%pfree\n", __FILE__, __LINE__, (void *) line);
 	free(line);
 	if (args == NULL)
 	{
@@ -56,7 +58,7 @@ int run_non_bi(char **args, char *function, char **enva)
 	if (childpid == 0)
 	{
 		set_to_kill();
-		printf("simple shell: in child process\n");
+/*		printf("simple shell: in child process\n");*/
 		if (execve(function, (char *const *) args, enva) == -1)
 		{
 			perror("simple shell");
@@ -72,7 +74,7 @@ int run_non_bi(char **args, char *function, char **enva)
 		free(function);
 		printf("in parent: child process is %u status is %i current pid is %u\n", childpid, status, getpid());
 	}
-	printf("FREE ARGS\n");
+	printf("FREE ARGSxs");
 	free_strtow(args);
 	printf("%s %i\n", __FILE__, __LINE__);
 	return (0);

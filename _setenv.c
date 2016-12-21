@@ -29,9 +29,12 @@ char **realloc_matrix(char **a, char *val)
 /*		printf("REALLOC_M new %s\n", new[i]);*/
 		++i;
 	}
-	new[i] = val;
+	printf("val is %s\n", val);
+	printf("i is %d\n", i);
+	new[i] = _strdup(val);
+	printf("%s\n", val);
 	new[i + 1] = NULL;
-	free_strtow(a);
+	free(a);
 	printf("%s %i %p\n", __FILE__, __LINE__, (void *)new);
 	return (new);
 }
@@ -85,13 +88,13 @@ int _setenv(const char *name, const char *value, int overwrite, char ***enva)
 		printf("%s %i new string %s\n", __FILE__, __LINE__, val);
 /*realloc environ, need triple pointer*/
 		new_enva = realloc_matrix(*enva, val);
-/*		free(val);*/
+		free(val);
 		printf("%s %i %p\n", __FILE__, __LINE__, (void *)new_enva);
 		if (new_enva == NULL)
 			return (-1);
 
 /*		_printenv(new_enva);*/
-		enva = &new_enva;
+		*enva = new_enva;
 /*		_printenv(*enva);*/
 	}
 	return (0);

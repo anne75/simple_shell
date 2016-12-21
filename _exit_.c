@@ -18,7 +18,10 @@ int _exit_(char **enva, node_t **pathl, node_t **histl, char **args)
 	free_list(*pathl);
 	free_list(*histl);
 	if (args != NULL)
+	{
+		printf("%s FREE ARGS\n", __FILE__);
 		free_strtow(args);
+	}
 	exit(0);
 	return (0);
 }
