@@ -11,13 +11,13 @@ char *remove_comments(char *line)
 	char *good;
 	int i;
 
-	split = strtow(line, '#');
+	split = strtow(line, "#");
 	if (split == NULL)
 		return (NULL);
 
 	good = split[0];
 	free(line);
-	printf("%s the good stuff %s\n", __FILE__, good);
+
 	i = 1;
 	while (split[i] != NULL)
 		++i;

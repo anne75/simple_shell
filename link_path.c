@@ -13,9 +13,9 @@ node_t *link_path(node_t **head, char **enva)
 	node_t *check;
 
 /*PATH exists, no NULL check*/
-/*	printf("enter %s %i\n", __FILE__, __LINE__);*/
-/*	printf("%s\n", _getenv("PATH", enva));*/
-	result = strtow(_getenv("PATH", enva), ':');
+	printf("enter %s %i\n", __FILE__, __LINE__);
+	printf("%s\n", _getenv("PATH", enva));
+	result = strtow(_getenv("PATH", enva), ":");
 	if (result == NULL)
 		return (NULL);
 	i = 0;

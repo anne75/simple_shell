@@ -143,7 +143,7 @@ int _strspn(char *s, char *delimeter);
 int _strcspn(char *s, char *delimeter);
 
 /*in strtow*/
-char **strtow(char *str, char delimeter);
+char **strtow(char *str, char *delimeters);
 void free_strtow(char **s);
 
 /*int _strtok*/
