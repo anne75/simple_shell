@@ -55,7 +55,6 @@ int run_non_bi(char **args, char *function, char **enva)
 	if (childpid == 0)
 	{
 		set_to_kill();
-/*		printf("simple shell: in child process\n");*/
 		if (execve(function, (char *const *) args, enva) == -1)
 		{
 			perror("simple shell");
