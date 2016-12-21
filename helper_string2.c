@@ -3,6 +3,7 @@
 /*this file includes
  * _strcmp
  * _strchr_r
+ * _atoi
  */
 
 /**
@@ -42,4 +43,41 @@ char *strchr_r(char *s, char c)
 	if (l < 0)
 		return (NULL);
 	return (s + l);
+}
+
+/**
+ * _atoi - convert first set of numbers in string to integer
+ * @s: input
+ * Return: converted integer value
+ */
+
+int _atoi(char *s)
+{
+	int i, j, sum;
+
+	j = sum = 0;
+	i = 1;
+	while ((s[j] < '0' || s[j] > '9') && s[j] != 0)
+	{
+		if (s[j] == '-')
+		{
+			i = i * -1;
+		}
+		j++;
+	}
+	while ((s[j] >= '0' && s[j] <= '9') && s[j] != 0)
+	{
+		if (sum >= 0)
+		{
+			sum = -(s[j] - '0');
+			j++;
+		}
+		else
+		{
+			sum = sum * 10 - (s[j] - '0');
+			j++;
+		}
+	}
+	i = i * -1;
+	return (sum * i);
 }

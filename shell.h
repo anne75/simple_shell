@@ -99,6 +99,7 @@ const char *_strchr(const char *s, char c);
 
 /*in helper_strin2*/
 int _strcmp(char *s1, char *s2);
+int _atoi(char *s);
 
 /*in helper_list*/
 node_t *add_node_end(node_t **head, const char *, const char *);
