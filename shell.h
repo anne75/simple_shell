@@ -58,7 +58,7 @@ typedef struct bi_s
 {
 	char *name;
 	char *help;
-        int (*fp)(char **args, char ***enva, node_t **pathl, node_t **histl);
+	int (*fp)(char **args, char ***enva, node_t **pathl, node_t **histl);
 } bi_t;
 
 /*extern variable*/
