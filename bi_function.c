@@ -50,7 +50,7 @@ int bi_function(char **args, char ***enva, node_t **pathl, node_t **histl)
 	if (i == 4)
 		return (_unsetenv(args[1], *enva));
 	if (i == 5)
-		return (_cd(args, *enva));
+		return (_cd(args, enva));
 	if (i == 6)
 		return (_help(args[1]));
 	if (i == 7)

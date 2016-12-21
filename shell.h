@@ -56,7 +56,7 @@ extern char **environ;
 int bi_function(char **args, char ***enva, node_t **pathl, node_t **histl);
 
 /*in _cd*/
-int _cd(char **args, char **envl);
+int _cd(char **args, char ***envl);
 
 ssize_t _getline(char **, size_t *, int);
 
