@@ -30,7 +30,6 @@ ssize_t read_it_all(char **buffer, int fd, int *end_of_file)
 			break;
 		}
 	}
-	printf("%s nr %i\n", __FILE__, nr);
 	if (nr == 0)
 		*end_of_file = 1;
 	if (nr == -1)
