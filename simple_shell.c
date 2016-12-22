@@ -16,16 +16,18 @@ int main(void)
 	node_t *histl;
 	char *remainder;
 	char *buffer;
+	int e_o_f;
 
 	histl = NULL;
 	buffer = NULL;
+	e_o_f = 0;
 	check =	initialize_shell(&enva, &pathl, &histl, &remainder);
 	if (check == -1)
 		return (0);
 	while (1)
 	{
 		set_to_catch();
-		line = prompt(&buffer, &remainder, enva, pathl, histl);
+		line = prompt(&buffer, &remainder, enva, pathl, histl, &e_o_f);
 		if (line != NULL)
 /*line is NULL if nothing or only comments, EOF caught before*/
 		{
@@ -33,7 +35,10 @@ int main(void)
 			add_node_end(&histl, line, NULL);
 			execute_command(line, &enva, &pathl, &histl);
 		}
+		if (e_o_f && remainder == NULL)
+			break;
 	}
+	_history_write(&histl);
 	free_enva(enva);
 	free_list(pathl);
 	free_list(histl);

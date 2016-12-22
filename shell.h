@@ -101,8 +101,8 @@ int bi_getenv(char **args, char ***enva, node_t **pathl, node_t **histl);
 char *_getenv(const char *name, char **enva);
 
 /*in _getlinewhithbuffer.c*/
-ssize_t read_it_all(char **buffer, int fd);
-ssize_t _getlinewithbuffer(char **buf, char **line, char **rem, int fd);
+ssize_t read_it_all(char **buffer, int fd, int *);
+ssize_t _getlinewithbuffer(char **buf, char **line, char **rem, int fd, int *);
 
 /*in _help.c*/
 int _help(char **args, char ***enva, node_t **pathl, node_t **histl);
@@ -156,7 +156,7 @@ ssize_t _getline(char **buf, size_t *size, int file_strm);
 int _printenv(char **args, char ***enva, node_t **pathl, node_t **histl);
 
 /*in prompt*/
-char *prompt(char **buf, char **rem, char **enva, node_t *pathl, node_t *histl);
+char *prompt(char **buf, char **rem, char **enva, node_t *pathl, node_t *histl, int *);
 
 /*in _realloc*/
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
