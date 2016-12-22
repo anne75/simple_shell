@@ -10,6 +10,7 @@
  */
 int _cd(char **args, char ***envl, node_t **pathl, node_t **histl)
 {
+	int i;
 	char *home;
 	char *prev;
 	(void) pathl;
@@ -28,8 +29,9 @@ int _cd(char **args, char ***envl, node_t **pathl, node_t **histl)
 		home = _strdup(args[1]);
 	prev = _strdup(_getenv("PWD", *envl));
 	_setenv("OLDPWD", prev, 1, envl);
-	chdir(home);
-	_setenv("PWD", home, 1, envl);
+	i = chdir(home);
+	if (i == 0)
+		_setenv("PWD", home, 1, envl);
 	free(prev);
 	free(home);
 	return (0);
