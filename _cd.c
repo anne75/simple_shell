@@ -28,10 +28,12 @@ int _cd(char **args, char ***envl, node_t **pathl, node_t **histl)
 	else
 		home = _strdup(args[1]);
 	prev = _strdup(_getenv("PWD", *envl));
-	_setenv("OLDPWD", prev, 1, envl);
 	i = chdir(home);
 	if (i == 0)
+	{
+		_setenv("OLDPWD", prev, 1, envl);
 		_setenv("PWD", home, 1, envl);
+	}
 	free(prev);
 	free(home);
 	return (0);
