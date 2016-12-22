@@ -9,17 +9,18 @@
  * @enva: environmental 2D array
  * @pathl: linked list for path
  * @histl: linked list for history
+ * @e_o_f: end of file flag
  * Return: string read from user
  */
-char *prompt(char **buf, char **rem, char **enva, node_t *pathl, node_t *histl)
+char *prompt(char **buf, char **rem, char **enva,
+	     node_t *pathl, node_t *histl, int *e_o_f)
 {
 	ssize_t nline;
 	char *line;
 	char *no_comments;
 
-	write(1, "$ ", 2);
 	line = NULL;
-	nline = _getlinewithbuffer(buf, &line, rem, STDIN_FILENO);
+	nline = _getlinewithbuffer(buf, &line, rem, STDIN_FILENO, e_o_f);
 	if (nline <= 0)
 	{
 		if (line != NULL)
