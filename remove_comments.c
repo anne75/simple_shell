@@ -7,11 +7,9 @@
  */
 char *remove_comments(char *line)
 {
-	char **split;
 	char *good;
-	int i, hashindex;
+	int hashindex;
 
-	i = 0;
 
 	hashindex = _strcspn(line, "#");
 	if (hashindex <= 0)
@@ -22,9 +20,12 @@ char *remove_comments(char *line)
 
 	good = malloc(sizeof(char) * (hashindex + 1));
 	if (good == NULL)
+	{
+		free(line);
 		return (NULL);
-	good = _memcpy(good, line, hashindex)
-		good[hashindex] = '\0';
-	free(line)
+	}
+	good = _memcpy(good, line, hashindex);
+	good[hashindex] = '\0';
+	free(line);
 	return (good);
 }
