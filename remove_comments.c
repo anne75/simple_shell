@@ -17,6 +17,8 @@ char *remove_comments(char *line)
 		free(line);
 		return (NULL);
 	}
+	if (hashindex == _strlen(line))
+		return (line);
 
 	good = malloc(sizeof(char) * (hashindex + 1));
 	if (good == NULL)
