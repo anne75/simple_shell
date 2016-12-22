@@ -10,7 +10,7 @@
  * @histl: linked list for history
  * Return: string read from user
  */
-char *prompt(char **remainder, char **enva, node_t *pathl, node_t *histl)
+char *prompt(char **buffer, char **remainder, char **enva, node_t *pathl, node_t *histl)
 {
 	ssize_t nline;
 	char *line;
@@ -18,7 +18,7 @@ char *prompt(char **remainder, char **enva, node_t *pathl, node_t *histl)
 
 	write(1, "$ ", 2);
 	line = NULL;
-	nline = _getlinewithbuffer(&line, remainder, STDIN_FILENO);
+	nline = _getlinewithbuffer(buffer, &line, remainder, STDIN_FILENO);
 	if (nline <= 0)
 	{
 		if (line != NULL)
@@ -26,7 +26,6 @@ char *prompt(char **remainder, char **enva, node_t *pathl, node_t *histl)
 		_exit_(NULL, &enva, &pathl, &histl);
 		return (NULL);
 	}
-
 	no_comments = remove_comments(line);
 	return (no_comments);
 }

@@ -13,7 +13,7 @@
 char *_strtok_r(char **result, char *line, char *delim, char **remain)
 {
 	int index1, index2;
-/*	printf("_strtok conditions %i %s\n", !result, *remain);*/
+
 	if (!result || !remain)
 		return (NULL);
 
@@ -23,9 +23,7 @@ char *_strtok_r(char **result, char *line, char *delim, char **remain)
 	index1 = _strspn(line, delim); /*get rid of junk in the beginning*/
 
 	index2 = _strcspn(line + index1, delim);
-/*return of end of line or junk*/
 	if (*(line + index1 + index2) && *(line + index1 + index2 + 1))
-/*I have not reached the end of the line*/
 	{
 		*remain = line + index1 + index2 + 1;
 	}

@@ -45,23 +45,23 @@ ssize_t read_it_all(char **buffer, int fd)
  * @fd: file descriptor
  * Return: number of characters read, -1 on error
  */
-ssize_t _getlinewithbuffer(char **line, char **remainder, int fd)
+ssize_t _getlinewithbuffer(char **buffer, char **line, char **remainder, int fd)
 {
-	char *buffer, *check_line;
+	char *check_line;
 	ssize_t check;
 
-	buffer = NULL;
 	if (!line || !remainder)
 		return (-1);
 	if (*remainder == NULL)
 	{
-		check = read_it_all(&buffer, fd);
+		check = read_it_all(buffer, fd);
 		if (check <= 0)
 		{
-			free(buffer);
+			if (*buffer != NULL)
+				free(*buffer);
 			return (check);
 		}
-		check_line = _strtok_r(line, buffer, ";\n\0", remainder);
+		check_line = _strtok_r(line, *buffer, ";\n\0", remainder);
 	}
 	else
 	{
@@ -69,10 +69,12 @@ ssize_t _getlinewithbuffer(char **line, char **remainder, int fd)
 	}
 	if (*remainder == NULL) /*just reached end of buffer, and buffer malloc'ed*/
 	{
-		printf("freeing buffer\n");
-		free(buffer);
+		free(*buffer);
 	}
 	if (check_line == NULL)
+	{
+		free(*buffer);
 		return (-1);
+	}
 	return (_strlen(check_line) + 1); /*differentiate from CtrlD*/
 }

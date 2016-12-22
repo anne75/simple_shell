@@ -102,7 +102,7 @@ char *_getenv(const char *name, char **enva);
 
 /*in _getlinewhithbuffer.c*/
 ssize_t read_it_all(char **buffer, int fd);
-ssize_t _getlinewithbuffer(char **line, char **remainder, int fd);
+ssize_t _getlinewithbuffer(char **buffer, char **line, char **remainder, int fd);
 
 /*in _help.c*/
 int _help(char **args, char ***enva, node_t **pathl, node_t **histl);
@@ -156,7 +156,7 @@ ssize_t _getline(char **buf, size_t *size, int file_strm);
 int _printenv(char **args, char ***enva, node_t **pathl, node_t **histl);
 
 /*in prompt*/
-char *prompt(char **remainder, char **enva, node_t *pathl, node_t *histl);
+char *prompt(char **buffer, char **remainder, char **enva, node_t *pathl, node_t *histl);
 
 /*in _realloc*/
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);

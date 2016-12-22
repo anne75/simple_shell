@@ -15,16 +15,17 @@ int main(void)
 	int check;
 	node_t *histl;
 	char *remainder;
+	char *buffer;
 
 	histl = NULL;
-
+	buffer = NULL;
 	check =	initialize_shell(&enva, &pathl, &histl, &remainder);
 	if (check == -1)
 		return (0);
 	while (1)
 	{
 		set_to_catch();
-		line = prompt(&remainder, enva, pathl, histl);
+		line = prompt(&buffer, &remainder, enva, pathl, histl);
 		if (line != NULL)
 /*line is NULL if nothing or only comments, EOF caught before*/
 		{
