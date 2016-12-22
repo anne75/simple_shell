@@ -16,17 +16,14 @@ int main(void)
 	node_t *histl;
 	char *remainder;
 
-	printf("%s %i\n", __FILE__, __LINE__);
 	histl = NULL;
 
 	check =	initialize_shell(&enva, &pathl, &histl, &remainder);
 	if (check == -1)
 		return (0);
-	printf("end initialize %s %i\n", __FILE__, __LINE__);
 	while (1)
 	{
 		set_to_catch();
-		printf("%s %i\n", __FILE__, __LINE__);
 		line = prompt(&remainder, enva, pathl, histl);
 		if (line != NULL)
 /*line is NULL if nothing or only comments, EOF caught before*/
@@ -36,7 +33,6 @@ int main(void)
 			execute_command(line, &enva, &pathl, &histl);
 		}
 	}
-	printf("RETURN %s\n", __FILE__);
 	free_enva(enva);
 	free_list(pathl);
 	free_list(histl);

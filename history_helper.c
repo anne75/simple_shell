@@ -32,7 +32,6 @@ char *_getcmd(int file_strm)
 	size_t length;
 	char *line;
 
-/*	printf("entered _getcmd\n");*/
 	length = LINE_LENGTH;
 	line = malloc(sizeof(char) * length);
 	if (line == NULL)
@@ -40,12 +39,10 @@ char *_getcmd(int file_strm)
 	nline = _getline(&line, &length, file_strm);
 	if (nline == -1)
 	{
-		printf("FAIL\n");
 		free(line);
 		return (NULL);
 	}
 	line[nline - 1] = '\0';
-	printf("le line is %s\n", line);
 	return (line);
 }
 
@@ -63,7 +60,6 @@ node_t **history_init(node_t **file_str)
 
 	modes = S_IRUSR | S_IWUSR;
 	fp = open(".simple_shell_history", O_RDWR | O_CREAT, modes);
-	printf("fp is %d\n", fp);
 	if (fp == -1)
 		return (NULL);
 	length = LINE_LENGTH;
@@ -79,11 +75,7 @@ node_t **history_init(node_t **file_str)
 	} while (nr > 0);
 	free(cmd);
 	if (nr == -1)
-	{
-		printf("FAIL\n");
 		return (NULL);
-	}
-	printf("LMFAO WHAT\n");
 	close(fp);
 	return (file_str);
 }

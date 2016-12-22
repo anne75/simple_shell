@@ -2,22 +2,29 @@
 
 /**
  * _printenv - prints the environment
- * @enva: linked list of environment
- *
+ * @args: arguments used
+ * @env: linked list of environment
+ * @pathl: path linked list
+ * @histl: history linked list
+ * Return: 0 for success
  */
-void _printenv(char **enva)
+int _printenv(char **args, char ***env, node_t **pathl, node_t **histl)
 {
 	int i;
+	char **enva;
+	(void) args;
+	(void) pathl;
+	(void) histl;
 
+	enva = *env;
 	if (!enva)
-		return;
-	printf("enter printenv\n");
+		return (-1);
 	i = 0;
 	while (enva[i] != NULL)
 	{
-		printf("enter while loop\n");
 		write(STDOUT_FILENO, enva[i], _strlen(enva[i]));
 		write(STDOUT_FILENO, "\n", 1);
 		++i;
 	}
+	return (0);
 }

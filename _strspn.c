@@ -60,4 +60,3 @@ int _strcspn(char *s, char *delimeter)
 
 	return (i);
 }
-

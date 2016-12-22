@@ -17,18 +17,14 @@ int execute_command(char *line, char ***enva, node_t **pathl, node_t **histl)
 	args = NULL;
 
 	args = strtow(line, " \t\v\r\f");
-/*			printf("%s %i free\n", __FILE__, __LINE__);*/
-	printf("%s %i ===============%pfree\n", __FILE__, __LINE__, (void *) line);
 	free(line);
 	if (args == NULL)
 	{
-		printf("execute_command: empty line\n");
 		return (0);
 	}
 	ret_value = bi_function(args, enva, pathl, histl);
 	if (ret_value != 101)
 	{
-		printf("EXecuted built in\n");
 		free_strtow(args);
 		return (ret_value);
 	}
@@ -59,7 +55,6 @@ int run_non_bi(char **args, char *function, char **enva)
 	if (childpid == 0)
 	{
 		set_to_kill();
-/*		printf("simple shell: in child process\n");*/
 		if (execve(function, (char *const *) args, enva) == -1)
 		{
 			perror("simple shell");
@@ -74,8 +69,6 @@ int run_non_bi(char **args, char *function, char **enva)
 		waitpid(childpid, &status, 0);
 		free(function);
 	}
-	printf("FREE ARGSxs");
 	free_strtow(args);
-	printf("%s %i\n", __FILE__, __LINE__);
 	return (0);
 }

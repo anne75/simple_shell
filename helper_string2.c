@@ -24,7 +24,7 @@ int _strcmp(char *s1, char *s2)
 }
 
 /**
- * _=strchr_r - strchr reverse: find the last occurence of a char in a string
+ * strchr_r - strchr reverse: find the last occurence of a char in a string
  * @s: a string
  * @c: a char
  * Return: pointer to where the char is or NULL

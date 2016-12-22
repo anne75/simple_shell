@@ -55,7 +55,6 @@ char *_getw(unsigned char *s, char *dest, int l)
 	i = 0;
 	while (i < l)
 	{
-		printf("%c--", *(s + i));
 		*(dest + i) = *(s + i);
 		++i;
 	}

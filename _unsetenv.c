@@ -16,9 +16,7 @@ int _unsetenv(const char *name, char **enva)
 	{
 		if (check_first(enva[i], name))
 		{
-			printf("enva[i] is %s\n", enva[i]);
 			free(enva[i]);
-			printf("what now\n");
 			for (tmp = &enva[i];; ++tmp)
 			{
 				*tmp = *(tmp + 1);
@@ -29,5 +27,29 @@ int _unsetenv(const char *name, char **enva)
 		++i;
 	}
 	*tmp = NULL;
+	return (0);
+}
+
+/**
+ * _unsetenv_help - helper function to unsetenv due to bi_t
+ * @args: argument array
+ * @enva: environment array
+ * @pathl: path linked list
+ * @histl: history linked list
+ * Return: 0 for success
+ */
+int _unsetenv_help(char **args, char ***enva, node_t **pathl, node_t **histl)
+{
+	char *name;
+	char *test;
+	(void) pathl;
+	(void) histl;
+
+	name = args[1];
+	test = _getenv(name, *enva);
+	if (test == NULL)
+		return (-1);
+	if (name != NULL)
+		_unsetenv(name, *enva);
 	return (0);
 }

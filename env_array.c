@@ -2,8 +2,6 @@
 
 /**
  * env_array - create an array of environmental variables
- *
- *
  * Return: beginning of linked list
  */
 char **env_array(void)
@@ -18,7 +16,6 @@ char **env_array(void)
 	if (array == NULL)
 		return (NULL);
 
-	printf("%s %i\n", __FILE__, __LINE__);
 	for (i = 0; environ[i]; ++i)
 	{
 		array[i] = _strdup(environ[i]);
@@ -31,6 +28,5 @@ char **env_array(void)
 		}
 	}
 	array[i] = NULL;
-	printf("return %s %i\n", __FILE__, __LINE__);
 	return (array);
 }

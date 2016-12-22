@@ -22,20 +22,14 @@ char **realloc_matrix(char **a, char *val)
 		return (NULL);
 
 	i = 0;
-	printf("%s %i\n", __FILE__, __LINE__);
 	while (a[i])
 	{
 		new[i] = a[i];
-/*		printf("REALLOC_M new %s\n", new[i]);*/
 		++i;
 	}
-	printf("val is %s\n", val);
-	printf("i is %d\n", i);
 	new[i] = _strdup(val);
-	printf("%s\n", val);
 	new[i + 1] = NULL;
 	free(a);
-	printf("%s %i %p\n", __FILE__, __LINE__, (void *)new);
 	return (new);
 }
 
@@ -76,17 +70,28 @@ int _setenv(const char *name, const char *value, int overwrite, char ***enva)
 		for (k = 0; value[k] != '\0'; k++, l++)
 			val[l] = value[k];
 		val[l] = '\0';
-		printf("%s %i new string %s\n", __FILE__, __LINE__, val);
 /*realloc environ, need triple pointer*/
 		new_enva = realloc_matrix(*enva, val);
 		free(val);
-		printf("%s %i %p\n", __FILE__, __LINE__, (void *)new_enva);
 		if (new_enva == NULL)
 			return (-1);
-
-/*		_printenv(new_enva);*/
 		*enva = new_enva;
-/*		_printenv(*enva);*/
 	}
+	return (0);
+}
+
+/**
+ * _setenv_help - helper function due to built-in struct
+ * @args: argument array
+ * @enva: environment array
+ * @pathl: path linked list
+ * @histl: history linked list
+ * Return: 0 for success
+ */
+int _setenv_help(char **args, char ***enva, node_t **pathl, node_t **histl)
+{
+	(void) pathl;
+	(void) histl;
+	_setenv(args[1], args[2], 1, enva);
 	return (0);
 }

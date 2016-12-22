@@ -11,11 +11,9 @@ ssize_t read_it_all(char **buffer, int fd)
 	int nr, count;
 	char buf_help[BUF_LENGTH];
 
-	printf("%s %i READ it all\n", __FILE__, __LINE__);
 	if (!buffer)
 		return (-1);
 	*buffer = malloc(sizeof(char) * 1); /*I need to malloc the buffer whatever*/
-/*	printf("malloc buffer getlinewithbuffer\n");*/
 	if (*buffer == NULL)
 		return (-1);
 	(*buffer)[0] = '\0';
@@ -54,7 +52,6 @@ ssize_t _getlinewithbuffer(char **line, char **remainder, int fd)
 
 	if (!line || !remainder)
 		return (-1);
-/*	printf("%s %i before loop is there remainder\n", __FILE__, __LINE__);*/
 	if (*remainder == NULL)
 	{
 		check = read_it_all(&buffer, fd);
@@ -67,15 +64,12 @@ ssize_t _getlinewithbuffer(char **line, char **remainder, int fd)
 	}
 	else
 	{
-/*		printf("%s remainder before _strtok is %s\n", __FILE__, *remainder);*/
 		check_line = _strtok_r(line, NULL, ";\n\0", remainder);
 	}
 	if (*remainder == NULL) /*just reached end of buffer, and buffer malloc'ed*/
 	{
-		printf("FREE free buffer getline%p\n", (void *) buffer);
 		free(buffer);
 	}
-/*	printf("%s remainder return _strtok is %s\n", __FILE__, *remainder);*/
 	if (check_line == NULL)
 		return (-1);
 	return (_strlen(check_line) + 1); /*differentiate from CtrlD*/

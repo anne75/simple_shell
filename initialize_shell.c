@@ -13,7 +13,6 @@ int initialize_shell(char ***enva, node_t **pathl,
 {
 	node_t *check, **check2;
 
-	printf("%s %i\n", __FILE__, __LINE__);
 	*enva = env_array();
 	if (enva == NULL)
 		return (-1);
