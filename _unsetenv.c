@@ -41,10 +41,15 @@ int _unsetenv(const char *name, char **enva)
 int _unsetenv_help(char **args, char ***enva, node_t **pathl, node_t **histl)
 {
 	char *name;
+	char *test;
 	(void) pathl;
 	(void) histl;
 
 	name = args[1];
-	_unsetenv(name, *enva);
+	test = _getenv(name, *enva);
+	if (test == NULL)
+		return (-1);
+	if (name != NULL)
+		_unsetenv(name, *enva);
 	return (0);
 }
