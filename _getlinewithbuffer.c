@@ -50,6 +50,7 @@ ssize_t _getlinewithbuffer(char **line, char **remainder, int fd)
 	char *buffer, *check_line;
 	ssize_t check;
 
+	buffer = NULL;
 	if (!line || !remainder)
 		return (-1);
 	if (*remainder == NULL)
@@ -68,6 +69,7 @@ ssize_t _getlinewithbuffer(char **line, char **remainder, int fd)
 	}
 	if (*remainder == NULL) /*just reached end of buffer, and buffer malloc'ed*/
 	{
+		printf("freeing buffer\n");
 		free(buffer);
 	}
 	if (check_line == NULL)
