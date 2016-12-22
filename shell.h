@@ -156,7 +156,7 @@ ssize_t _getline(char **buf, size_t *size, int file_strm);
 int _printenv(char **args, char ***enva, node_t **pathl, node_t **histl);
 
 /*in prompt*/
-char *prompt(char **buf, char **rem, char **enva, node_t *pathl, node_t *histl, int *);
+char *prompt(char **buf, char **rem, char **enva, node_t *, node_t *, int *);
 
 /*in _realloc*/
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
