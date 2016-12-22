@@ -11,7 +11,7 @@
 #include <limits.h>
 #include <signal.h>
 
-#define BUF_LENGTH 64
+#define BUF_LENGTH 1024
 #define LINE_LENGTH 20
 /*#define EOF (-1)*/
 
