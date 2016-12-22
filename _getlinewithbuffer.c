@@ -40,19 +40,20 @@ ssize_t read_it_all(char **buffer, int fd)
 
 /**
  * _getlinewithbuffer - return one line from a buffer that may have more
+ * @buffer: buffer to store values
  * @line: where to put the result, it should be NULL, needed to pass it around
- * @remainder: where to look for a line
+ * @rem: where to look for a line
  * @fd: file descriptor
  * Return: number of characters read, -1 on error
  */
-ssize_t _getlinewithbuffer(char **buffer, char **line, char **remainder, int fd)
+ssize_t _getlinewithbuffer(char **buffer, char **line, char **rem, int fd)
 {
 	char *check_line;
 	ssize_t check;
 
-	if (!line || !remainder)
+	if (!line || !rem)
 		return (-1);
-	if (*remainder == NULL)
+	if (*rem == NULL)
 	{
 		check = read_it_all(buffer, fd);
 		if (check <= 0)
@@ -61,13 +62,13 @@ ssize_t _getlinewithbuffer(char **buffer, char **line, char **remainder, int fd)
 				free(*buffer);
 			return (check);
 		}
-		check_line = _strtok_r(line, *buffer, ";\n\0", remainder);
+		check_line = _strtok_r(line, *buffer, ";\n\0", rem);
 	}
 	else
 	{
-		check_line = _strtok_r(line, NULL, ";\n\0", remainder);
+		check_line = _strtok_r(line, NULL, ";\n\0", rem);
 	}
-	if (*remainder == NULL) /*just reached end of buffer, and buffer malloc'ed*/
+	if (*rem == NULL) /*just reached end of buffer, and buffer malloc'ed*/
 	{
 		free(*buffer);
 	}
