@@ -28,8 +28,6 @@ int _help_all(bi_t *array)
  */
 int _help(char **args, char ***enva, node_t **pathl, node_t **histl)
 {
-	int i, j;
-	(void) enva; (void) pathl; (void) histl;
 	bi_t array[] = {
 		{"exit", "exit [status] - Exit the shell\n", _exit_},
 		{"env", "env - Print environment variables\n", _printenv},
@@ -45,6 +43,8 @@ int _help(char **args, char ***enva, node_t **pathl, node_t **histl)
 		{"history", "history - Displays list of past commands\n",
 		 _history}, {NULL, NULL, NULL}
 	};
+	int i, j;
+	(void) enva; (void) pathl; (void) histl;
 
 	if (!args || !*args || !args[0])
 		return (101);
