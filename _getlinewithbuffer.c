@@ -4,16 +4,17 @@
  * read_it_all - reads a lot at a time
  * @buffer: the resulting buffer
  * @fd: a file descriptor
+ * @end_of_file: EOF flag
  * Return: number of characters read, -1 on error
  */
-ssize_t read_it_all(char **buffer, int fd)
+ssize_t read_it_all(char **buffer, int fd, int *end_of_file)
 {
 	int nr, count;
 	char buf_help[BUF_LENGTH];
 
 	if (!buffer)
 		return (-1);
-	*buffer = malloc(sizeof(char) * 1); /*I need to malloc the buffer whatever*/
+	*buffer = malloc(sizeof(char) * 1);
 	if (*buffer == NULL)
 		return (-1);
 	(*buffer)[0] = '\0';
@@ -29,7 +30,8 @@ ssize_t read_it_all(char **buffer, int fd)
 			break;
 		}
 	}
-
+	if (nr == 0)
+		*end_of_file = 1;
 	if (nr == -1)
 		return (-1);
 	return (count);
@@ -44,9 +46,11 @@ ssize_t read_it_all(char **buffer, int fd)
  * @line: where to put the result, it should be NULL, needed to pass it around
  * @rem: where to look for a line
  * @fd: file descriptor
+ * @end_of_file: end of file flag, do not reprompt
  * Return: number of characters read, -1 on error
  */
-ssize_t _getlinewithbuffer(char **buffer, char **line, char **rem, int fd)
+ssize_t _getlinewithbuffer(char **buffer, char **line,
+			   char **rem, int fd, int *end_of_file)
 {
 	char *check_line;
 	ssize_t check;
@@ -55,7 +59,8 @@ ssize_t _getlinewithbuffer(char **buffer, char **line, char **rem, int fd)
 		return (-1);
 	if (*rem == NULL)
 	{
-		check = read_it_all(buffer, fd);
+		write(1, "$ ", 2);
+		check = read_it_all(buffer, fd, end_of_file);
 		if (check <= 0)
 		{
 			if (*buffer != NULL)
