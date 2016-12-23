@@ -64,7 +64,7 @@ typedef struct bi_s
 extern char **environ;
 
 /*in tty_replace.c*/
-int check_tty(int fd);
+/*int check_tty(int fd);*/
 
 /*in bi_function.c*/
 int bi_function(char **args, char ***enva, node_t **pathl, node_t **histl);
