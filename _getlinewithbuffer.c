@@ -25,7 +25,7 @@ ssize_t read_it_all(char **buffer, int fd, int *end_of_file)
 		buf_help[nr + 1] = '\0';
 		*buffer = _strnconcat(*buffer, buf_help, nr);
 		count += nr;
-		if (isatty(fd) && buf_help[nr] == '\0')
+		if (/*isatty(fd) && */buf_help[nr] == '\0')
 		{
 			break;
 		}
