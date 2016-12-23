@@ -59,7 +59,6 @@ ssize_t _getlinewithbuffer(char **buffer, char **line,
 		return (-1);
 	if (*rem == NULL)
 	{
-		printf("%s %i\n", __FILE__, fd);
 		if (fd == STDIN_FILENO)
 			write(STDOUT_FILENO, "$ ", 2);
 		check = read_it_all(buffer, fd, end_of_file);
